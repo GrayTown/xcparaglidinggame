@@ -10,3 +10,8 @@ Tasks of this realisation:
 2. Add varios of platform, such as PC, Xbox and other
 3. May be add various of paraplans (like Ozone, Gin, and other)
    
+![screen-4](https://github.com/user-attachments/assets/50aa01e5-3617-4932-ab01-0100307bab64)
+
+![screen-2](https://github.com/user-attachments/assets/ceff759a-1eca-4ce7-aced-056484c79ee5)
+
+![Screenshot 2025-01-31 135540](https://github.com/user-attachments/assets/1d42d85e-dd08-44a6-964c-99200509c10a)
