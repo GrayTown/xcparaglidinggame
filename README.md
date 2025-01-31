@@ -5,6 +5,11 @@ This project is my first attempt to work on a remaster of a wonderful game, the 
 Author of original game Cristof.A
 Link - https://www.html5gamedevs.com/topic/32837-phaser-paragliding-game/ 
 
+Technical Data.
+<br>
+**Unity version 6000.0.36f1**
+<br>
+
 Tasks of this realisation:
 1. Remaster origin game (graphics)
 2. Add varios of platform, such as PC, Xbox and other
