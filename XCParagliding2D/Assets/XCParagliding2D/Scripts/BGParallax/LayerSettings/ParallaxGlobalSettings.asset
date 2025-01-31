@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2558a4338f4dde41ab694a087a6d283, type: 3}
+  m_Name: ParallaxGlobalSettings
+  m_EditorClassIdentifier: 
+  globalSpeed: 4.87
+  layers:
+  - {fileID: 11400000, guid: c2e207d86292c624e8f686a7e55c3250, type: 2}
+  - {fileID: 11400000, guid: aa6e265bf1be9084cb0b697a6cc0b029, type: 2}
+  - {fileID: 11400000, guid: 3e6cb87757e638e4590cd0db36f3acfa, type: 2}
+  - {fileID: 11400000, guid: f877b7038644ebb459f50236467f7a6a, type: 2}
+  inversionX: -1
+  inversionY: -1
