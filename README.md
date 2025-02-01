@@ -4,6 +4,7 @@ XC Paragliding Game.
 This project is my first attempt to work on a remaster of a wonderful game, the paraglider buddy. Completely free and with respect to the creator of the original.
 Author of original game Cristof.A
 Link - https://www.html5gamedevs.com/topic/32837-phaser-paragliding-game/ 
+<br>
 Notes - https://drive.google.com/drive/folders/15qTFyrjbnHPpcFEadWMfKOHhlRBteEfc?usp=sharing 
 
 Technical Data.
