@@ -3,43 +3,43 @@ using UnityEngine;
 public class StraightFlight : MonoBehaviour
 {
     [Header("Flight Parameters")]
-    public float forwardSpeed = 10f; // Скорость полета вперед
-    public float descentRate = 1.42f; // Скорость снижения (глайд 7:1)
-    public float turnTime = 2f; // Время, необходимое для смены направления
+    public float forwardSpeed = 10f; // РЎРєРѕСЂРѕСЃС‚СЊ РїРѕР»РµС‚Р° РІРїРµСЂРµРґ
+    public float descentRate = 1.42f; // РЎРєРѕСЂРѕСЃС‚СЊ СЃРЅРёР¶РµРЅРёСЏ (РіР»Р°Р№Рґ 7:1)
+    public float turnTime = 2f; // Р’СЂРµРјСЏ, РЅРµРѕР±С…РѕРґРёРјРѕРµ РґР»СЏ СЃРјРµРЅС‹ РЅР°РїСЂР°РІР»РµРЅРёСЏ
 
     private float turnTimer = 0f;
-    private int turnDirection = 0; // -1 (влево), 1 (вправо), 0 (не поворачиваем)
-    private int currentDirection = 1; // 1 - летим вправо, -1 - летим влево
+    private int turnDirection = 0; // -1 (РІР»РµРІРѕ), 1 (РІРїСЂР°РІРѕ), 0 (РЅРµ РїРѕРІРѕСЂР°С‡РёРІР°РµРј)
+    private int currentDirection = 1; // 1 - Р»РµС‚РёРј РІРїСЂР°РІРѕ, -1 - Р»РµС‚РёРј РІР»РµРІРѕ
 
     void Update()
     {
-        // Обрабатываем ввод с клавиатуры
+        // РћР±СЂР°Р±Р°С‚С‹РІР°РµРј РІРІРѕРґ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            turnDirection = -1; // Влево
+            turnDirection = -1; // Р’Р»РµРІРѕ
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            turnDirection = 1; // Вправо
+            turnDirection = 1; // Р’РїСЂР°РІРѕ
         }
         else
         {
-            turnDirection = 0; // Если не нажимается ни одна кнопка, не поворачиваем
-            turnTimer = 0f; // Сбрасываем таймер, чтобы при следующем нажатии снова ждать turnTime
+            turnDirection = 0; // Р•СЃР»Рё РЅРµ РЅР°Р¶РёРјР°РµС‚СЃСЏ РЅРё РѕРґРЅР° РєРЅРѕРїРєР°, РЅРµ РїРѕРІРѕСЂР°С‡РёРІР°РµРј
+            turnTimer = 0f; // РЎР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ, С‡С‚РѕР±С‹ РїСЂРё СЃР»РµРґСѓСЋС‰РµРј РЅР°Р¶Р°С‚РёРё СЃРЅРѕРІР° Р¶РґР°С‚СЊ turnTime
         }
 
-        // Если кнопка нажата, начинаем отсчет времени
+        // Р•СЃР»Рё РєРЅРѕРїРєР° РЅР°Р¶Р°С‚Р°, РЅР°С‡РёРЅР°РµРј РѕС‚СЃС‡РµС‚ РІСЂРµРјРµРЅРё
         if (turnDirection != 0)
         {
             turnTimer += Time.deltaTime;
             if (turnTimer >= turnTime)
             {
-                currentDirection *= -1; // Меняем направление на противоположное
-                turnTimer = 0f; // Сбрасываем таймер, чтобы снова ждать следующий поворот
+                currentDirection *= -1; // РњРµРЅСЏРµРј РЅР°РїСЂР°РІР»РµРЅРёРµ РЅР° РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕРµ
+                turnTimer = 0f; // РЎР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ, С‡С‚РѕР±С‹ СЃРЅРѕРІР° Р¶РґР°С‚СЊ СЃР»РµРґСѓСЋС‰РёР№ РїРѕРІРѕСЂРѕС‚
             }
         }
 
-        // Двигаем параплан в выбранном направлении
+        // Р”РІРёРіР°РµРј РїР°СЂР°РїР»Р°РЅ РІ РІС‹Р±СЂР°РЅРЅРѕРј РЅР°РїСЂР°РІР»РµРЅРёРё
         transform.position += new Vector3(currentDirection * forwardSpeed * Time.deltaTime, -descentRate * Time.deltaTime, 0);
     }
 }

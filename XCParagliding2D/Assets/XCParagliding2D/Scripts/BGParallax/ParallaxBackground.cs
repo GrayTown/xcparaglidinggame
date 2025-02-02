@@ -3,20 +3,20 @@ using UnityEngine.Rendering;
 
 public class ParallaxBackground : MonoBehaviour
 {
-    public ParallaxGlobalSettings globalSettings; // Ссылка на глобальные настройки
+    public ParallaxGlobalSettings globalSettings; // РЎСЃС‹Р»РєР° РЅР° РіР»РѕР±Р°Р»СЊРЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё
 
-    private Transform[] layers; // Массив трансформ слоев
-    private Vector3[] startPositions; // Начальные позиции слоев
+    private Transform[] layers; // РњР°СЃСЃРёРІ С‚СЂР°РЅСЃС„РѕСЂРј СЃР»РѕРµРІ
+    private Vector3[] startPositions; // РќР°С‡Р°Р»СЊРЅС‹Рµ РїРѕР·РёС†РёРё СЃР»РѕРµРІ
 
     private void Start()
     {
-        // Инициализация слоев
+        // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃР»РѕРµРІ
         layers = new Transform[globalSettings.layers.Length];
         startPositions = new Vector3[globalSettings.layers.Length];
 
         for (int i = 0; i < globalSettings.layers.Length; i++)
         {
-            // Создаем объект для слоя
+            // РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚ РґР»СЏ СЃР»РѕСЏ
             GameObject layerObject = GameObject.Find(globalSettings.layers[i].parallaxGameObjectName);
             layerObject.transform.parent = transform;
             if (globalSettings.layers[i].startPositionX != 0 || globalSettings.layers[i].startPositionY != 0)
@@ -27,7 +27,7 @@ public class ParallaxBackground : MonoBehaviour
             {
                 layerObject.transform.localPosition = Vector3.zero;
             }
-            // Добавляем спрайт (нужно указать спрайт вручную или через код)
+            // Р”РѕР±Р°РІР»СЏРµРј СЃРїСЂР°Р№С‚ (РЅСѓР¶РЅРѕ СѓРєР°Р·Р°С‚СЊ СЃРїСЂР°Р№С‚ РІСЂСѓС‡РЅСѓСЋ РёР»Рё С‡РµСЂРµР· РєРѕРґ)
             //SpriteRenderer renderer = layerObject.GetComponent<SpriteRenderer>();
             //renderer.sortingOrder = globalSettings.layers[i].sortingOrder;
 
@@ -42,7 +42,7 @@ public class ParallaxBackground : MonoBehaviour
     private void Update()
     {
         
-        // Применяем параллакс-эффект
+        // РџСЂРёРјРµРЅСЏРµРј РїР°СЂР°Р»Р»Р°РєСЃ-СЌС„С„РµРєС‚
         for (int i = 0; i < layers.Length; i++)
         {
             Vector3 newPosition = startPositions[i] + new Vector3(

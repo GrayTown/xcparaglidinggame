@@ -3,15 +3,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ParallaxLayerSettings", menuName = "XCParagliding/Parallax/LayerSettings")]
 public class ParallaxLayerSettings : ScriptableObject
 {
-    public string layerName; // Имя слоя
-    public int sortingOrder; // Слой сортировки
+    public string layerName; // В»РјВ¤ СЃР»РѕВ¤
+    public int sortingOrder; // вЂ”Р»РѕР№ СЃРѕСЂС‚РёСЂРѕРІРєРё
     [Range(0f, 1f)]
-    public float speedX; // Скорость по оси X
+    public float speedX; // вЂ”РєРѕСЂРѕСЃС‚СЊ РїРѕ РѕСЃРё X
     [Range(0f, 1f)]
-    public float speedY; // Скорость по оси Y
-    public string parallaxGameObjectName; // сам объект движения
+    public float speedY; // вЂ”РєРѕСЂРѕСЃС‚СЊ РїРѕ РѕСЃРё Y
+    public string parallaxGameObjectName; // СЃР°Рј РѕР±СЉРµРєС‚ РґРІРёР¶РµРЅРёВ¤
     [Range(-20f, 20f)]
-    public float startPositionX; // Скорость по оси X
+    public float startPositionX; // вЂ”РєРѕСЂРѕСЃС‚СЊ РїРѕ РѕСЃРё X
     [Range(-20f, 20f)]
-    public float startPositionY; // Скорость по оси Y
+    public float startPositionY; // вЂ”РєРѕСЂРѕСЃС‚СЊ РїРѕ РѕСЃРё Y
 }

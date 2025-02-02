@@ -4,8 +4,8 @@ using UnityEngine;
 public class ParallaxGlobalSettings : ScriptableObject
 {
     [Range(0f, 10f)]
-    public float globalSpeed = 1f; // Глобальная скорость параллакса
-    public ParallaxLayerSettings[] layers; // Массив настроек для каждого слоя
+    public float globalSpeed = 1f; // Р“Р»РѕР±Р°Р»СЊРЅР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ РїР°СЂР°Р»Р»Р°РєСЃР°
+    public ParallaxLayerSettings[] layers; // РњР°СЃСЃРёРІ РЅР°СЃС‚СЂРѕРµРє РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃР»РѕСЏ
     [Range(-1, 1f)]
     public int inversionX = 1;
     [Range(-1, 1)]
