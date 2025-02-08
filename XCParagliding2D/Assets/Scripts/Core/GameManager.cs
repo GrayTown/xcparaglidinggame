@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,16 +10,16 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
 
-        EventManager.Instance.Publish("GameStarted", " Я опубликовал cобытие старта игры");
+        EventManager.Instance.Publish("GameStarted", " РЇ РѕРїСѓР±Р»РёРєРѕРІР°Р» cРѕР±С‹С‚РёРµ СЃС‚Р°СЂС‚Р° РёРіСЂС‹");
     }
 
     public void EndGame()
     {
-        EventManager.Instance.Publish("GameEnded", "Игра завершена");
+        EventManager.Instance.Publish("GameEnded", "РРіСЂР° Р·Р°РІРµСЂС€РµРЅР°");
     }
 
     private void OnApplicationQuit()
     {
-        EndGame(); // Отправляем событие перед выходом
+        EndGame(); // РћС‚РїСЂР°РІР»СЏРµРј СЃРѕР±С‹С‚РёРµ РїРµСЂРµРґ РІС‹С…РѕРґРѕРј
     }
 }

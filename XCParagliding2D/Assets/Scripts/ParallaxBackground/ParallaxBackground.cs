@@ -5,11 +5,11 @@ public class ParallaxBackground : MonoBehaviour
     [System.Serializable]
     public class Layer
     {
-        public GameObject layerObject; // Ссылка на объект слоя
-        public ParallaxLayerData config; // Конфигурация для слоя
+        public GameObject layerObject; // РЎСЃС‹Р»РєР° РЅР° РѕР±СЉРµРєС‚ СЃР»РѕСЏ
+        public ParallaxLayerData config; // РљРѕРЅС„РёРіСѓСЂР°С†РёСЏ РґР»СЏ СЃР»РѕСЏ
     }
 
-    public Layer[] layers; // Массив слоев
+    public Layer[] layers; // РњР°СЃСЃРёРІ СЃР»РѕРµРІ
 
     private Vector3 previousCameraPosition;
 
@@ -31,14 +31,14 @@ public class ParallaxBackground : MonoBehaviour
         {
             if (layer.layerObject != null && layer.config != null)
             {
-                // Рассчитываем сдвиг каждого слоя с учетом скорости и плавности из конфига
+                // Р Р°СЃСЃС‡РёС‚С‹РІР°РµРј СЃРґРІРёРі РєР°Р¶РґРѕРіРѕ СЃР»РѕСЏ СЃ СѓС‡РµС‚РѕРј СЃРєРѕСЂРѕСЃС‚Рё Рё РїР»Р°РІРЅРѕСЃС‚Рё РёР· РєРѕРЅС„РёРіР°
                 Vector3 newPosition = layer.layerObject.transform.position + new Vector3(
                     cameraDelta.x * layer.config.speedX,
                     cameraDelta.y * layer.config.speedY,
                     0f
                 );
 
-                // Применяем плавность сдвига
+                // РџСЂРёРјРµРЅСЏРµРј РїР»Р°РІРЅРѕСЃС‚СЊ СЃРґРІРёРіР°
                 layer.layerObject.transform.position = Vector3.Lerp(
                     layer.layerObject.transform.position,
                     newPosition,
@@ -47,7 +47,7 @@ public class ParallaxBackground : MonoBehaviour
             }
         }
 
-        // Обновляем предыдущую позицию камеры для следующего кадра
+        // РћР±РЅРѕРІР»СЏРµРј РїСЂРµРґС‹РґСѓС‰СѓСЋ РїРѕР·РёС†РёСЋ РєР°РјРµСЂС‹ РґР»СЏ СЃР»РµРґСѓСЋС‰РµРіРѕ РєР°РґСЂР°
         previousCameraPosition = Camera.main.transform.position;
     }
 }

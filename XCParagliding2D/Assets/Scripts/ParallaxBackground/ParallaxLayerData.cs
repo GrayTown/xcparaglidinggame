@@ -5,9 +5,9 @@ using UnityEngine;
 public class ParallaxLayerData : ScriptableObject
 {
     public string layerName = "NewLayer";
-    public float speedX = 1; // Скорость сдвига по X
-    public float speedY = 0; // Скорость сдвига по Y
-    public float smoothness = 1; // Плавность сдвига
+    public float speedX = 1; // РЎРєРѕСЂРѕСЃС‚СЊ СЃРґРІРёРіР° РїРѕ X
+    public float speedY = 0; // РЎРєРѕСЂРѕСЃС‚СЊ СЃРґРІРёРіР° РїРѕ Y
+    public float smoothness = 1; // РџР»Р°РІРЅРѕСЃС‚СЊ СЃРґРІРёРіР°
     public float startPositionX = 0;
     public float startPositionY = 0;
 }

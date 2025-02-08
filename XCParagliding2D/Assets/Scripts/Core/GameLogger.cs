@@ -17,7 +17,7 @@ public class GameLogger : MonoBehaviour
 
     private void OnGameStarted(string message)
     {
-        Debug.Log($"[GameLogger] {message} -> Я подписчик на событие UI, срабатываю после класса");
+        Debug.Log($"[GameLogger] {message} -> РЇ РїРѕРґРїРёСЃС‡РёРє РЅР° СЃРѕР±С‹С‚РёРµ UI, СЃСЂР°Р±Р°С‚С‹РІР°СЋ РїРѕСЃР»Рµ РєР»Р°СЃСЃР°");
     }
 
     private void OnGameEnded(string message)
@@ -27,7 +27,7 @@ public class GameLogger : MonoBehaviour
 
     private void OnGameInitialize(string message)
     {
-        Debug.Log($"[GameLogger] Game {message} -> я подписчик на это же событие, но класс - сработаю до UI");
+        Debug.Log($"[GameLogger] Game {message} -> СЏ РїРѕРґРїРёСЃС‡РёРє РЅР° СЌС‚Рѕ Р¶Рµ СЃРѕР±С‹С‚РёРµ, РЅРѕ РєР»Р°СЃСЃ - СЃСЂР°Р±РѕС‚Р°СЋ РґРѕ UI");
     }
 }
 

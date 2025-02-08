@@ -34,7 +34,7 @@ public class Thermal : MonoBehaviour
         if (cloud != null)
         {
             // Смещаем облако вверх (используем Vector2)
-            cloud.transform.position = (Vector2)transform.position + new Vector2(0, transform.position.y + thermalResizer.size.y/2 - cloudOffsetY);
+            cloud.transform.position = (Vector2)transform.position + new Vector2(0, transform.position.y + thermalResizer.size.y/2 - cloudOffsetY - 300);
             cloud.SetLifetime(lifeTime); // Передаем время жизни в облако перед стартом
         }
     }
@@ -52,7 +52,7 @@ public class Thermal : MonoBehaviour
             float y = UnityEngine.Random.Range(thermalResizer.size.y / minSizeDelta.y, thermalResizer.size.y * maxSizeDelta.y);
             thermalResizer.size = new Vector2(x, y); 
             thermalResizer.OnValidate();
-            EventManager.Instance.Publish<float>("ThermalSizeY", thermalResizer.size.y);
+            EventManager.Instance.Publish<Vector2>("ThermalSizeXY", thermalResizer.size);
         }
     }
 

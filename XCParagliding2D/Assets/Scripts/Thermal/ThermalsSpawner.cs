@@ -30,7 +30,7 @@ public class ThermalsSpawner : MonoBehaviour
         EventManager.Instance.Subscribe<float>("ThermalDestroy", OnThermalDestroyed);
         EventManager.Instance.Subscribe<bool>("ParagliderDirection", OnChangeSpawnDirection);
         EventManager.Instance.Subscribe<float>("ParagliderPosition", OnChangeSpawnPosition);
-        EventManager.Instance.Subscribe<float>("ThermalSizeY", ThermalSizeYPosition);
+        EventManager.Instance.Subscribe<Vector2>("ThermalSizeXY", ThermalSizeXYPosition);
     }
 
     private void OnDisable()
@@ -38,12 +38,7 @@ public class ThermalsSpawner : MonoBehaviour
         EventManager.Instance.Unsubscribe<float>("ThermalDestroy", OnThermalDestroyed);
         EventManager.Instance.Unsubscribe<bool>("ParagliderDirection", OnChangeSpawnDirection);
         EventManager.Instance.Unsubscribe<float>("ParagliderPosition", OnChangeSpawnPosition);
-        EventManager.Instance.Unsubscribe<float>("ThermalSizeY", ThermalSizeYPosition);
-    }
-
-    private void ThermalSizeYPosition(float thermalSizeY)
-    {
-        thermalYSize = thermalSizeY;
+        EventManager.Instance.Unsubscribe<Vector2>("ThermalSizeXY", ThermalSizeXYPosition);
     }
 
     private void SpawnThermal()
@@ -66,8 +61,19 @@ public class ThermalsSpawner : MonoBehaviour
 
     private float SetYSpawnPosition()
     {
-        float yPos = thermalYSize - cloudBase.transform.position.y;
+        float yPos = cloudBase.transform.position.y - (thermalYSize / 2);
         return yPos;
+    }
+
+    private void ThermalSizeXYPosition(Vector2 thermalSizeXY)
+    {
+        thermalYSize = thermalSizeXY.y;
+    }
+
+
+    private void OnChangeSpawnPosition(float getPosition)
+    {
+        paragliderPosition = getPosition;
     }
 
     private bool IsThermalTooClose(float spawnPosition)
@@ -92,11 +98,6 @@ public class ThermalsSpawner : MonoBehaviour
         {
             direction = 1;
         }
-    }
-
-    private void OnChangeSpawnPosition(float getPosition)
-    {
-        paragliderPosition = getPosition;
     }
 
     private void OnThermalDestroyed(float position)
