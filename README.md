@@ -10,7 +10,7 @@ Notes - https://drive.google.com/drive/folders/15qTFyrjbnHPpcFEadWMfKOHhlRBteEfc
 
 Technical Data.
 <br>
-**Unity version 6000.0.36f1**
+**Unity version - latest LTS (now 6000.0.37f1)**
 <br>
 
 Tasks of this realisation:
