@@ -9,19 +9,27 @@ public class ThermalsSpawner : MonoBehaviour
     public float maxThermalWidth = 10f;
     public GameObject cloudBase;
 
-    private float lastSpawnTime;
+    private float lastSpawnTime = 0;
     private List<float> activeThermals = new List<float>();
     private float paragliderPosition = 0;
     private float direction = 1; // 1 - вправо, -1 - влево
     private float thermalYSize = 0;
+    private bool isParagliderPositionSet = false; // Флаг, получены ли координаты параплана
+
+    private void Start()
+    {
+        // Ждем обновления позиции параплана перед первым спавном
+        isParagliderPositionSet = false;
+    }
 
     void Update()
     {
+        if (!isParagliderPositionSet) return; // Ждем первую позицию
         // Проверяем, прошел ли интервал для генерации нового термика
         if (Time.time - lastSpawnTime > spawnInterval)
         {
-            SpawnThermal();
             lastSpawnTime = Time.time;
+            SpawnThermal();
         }
     }
 
@@ -29,8 +37,8 @@ public class ThermalsSpawner : MonoBehaviour
     {
         EventManager.Instance.Subscribe<float>("ThermalDestroy", OnThermalDestroyed);
         EventManager.Instance.Subscribe<bool>("ParagliderDirection", OnChangeSpawnDirection);
-        EventManager.Instance.Subscribe<float>("ParagliderPosition", OnChangeSpawnPosition);
-        EventManager.Instance.Subscribe<Vector2>("ThermalSizeXY", ThermalSizeXYPosition);
+        EventManager.Instance.Subscribe<float>("ParagliderPosition", OnChangeSpawnPosition, 0);
+        EventManager.Instance.Subscribe<Vector2>("ThermalSizeXY", ThermalSizeXYPosition, 1);
     }
 
     private void OnDisable()
@@ -49,7 +57,7 @@ public class ThermalsSpawner : MonoBehaviour
         if (!IsThermalTooClose(spawnPosition))
         {
             GameObject thermal = Instantiate(thermalPrefab, new Vector3(spawnPosition, newPos, 0), Quaternion.identity);
-            activeThermals.Add(spawnPosition);
+            activeThermals.Add(thermal.transform.position.x);
         }
     }
 
@@ -61,7 +69,7 @@ public class ThermalsSpawner : MonoBehaviour
 
     private float SetYSpawnPosition()
     {
-        float yPos = cloudBase.transform.position.y - (thermalYSize / 2);
+        float yPos = 600 - thermalYSize;
         return yPos;
     }
 
@@ -74,6 +82,8 @@ public class ThermalsSpawner : MonoBehaviour
     private void OnChangeSpawnPosition(float getPosition)
     {
         paragliderPosition = getPosition;
+        isParagliderPositionSet = true;
+
     }
 
     private bool IsThermalTooClose(float spawnPosition)

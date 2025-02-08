@@ -195,8 +195,8 @@ MonoBehaviour:
   maxLiftStrength: 20
   minLiftStrength: 3
   cloudOffsetY: 2
-  minSizeDelta: {x: 2, y: 2}
-  maxSizeDelta: {x: 2, y: 2}
+  minSizeDelta: {x: 1, y: 1}
+  maxSizeDelta: {x: 1, y: 1}
 --- !u!114 &8751653792507613451
 MonoBehaviour:
   m_ObjectHideFlags: 0
