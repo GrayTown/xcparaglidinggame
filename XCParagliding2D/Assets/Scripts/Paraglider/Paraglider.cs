@@ -6,6 +6,8 @@ public class Paraglider : MonoBehaviour
     [SerializeField] private float sinkRate = -2f;
     [SerializeField] private float smoothDeltaSpeed = 2f;
 
+    public float upLiftNow = 0;
+
     private float _currentLift = 0;
     private bool _changeDirection = false;
     private Rigidbody2D _rb;
@@ -15,6 +17,7 @@ public class Paraglider : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _rb.gravityScale = 0;
         _currentLift = sinkRate;
+        upLiftNow = sinkRate;
     }
 
     private void OnEnable()
@@ -71,6 +74,7 @@ public class Paraglider : MonoBehaviour
     void ApplyLift()
     {
         _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, Mathf.Lerp(_rb.linearVelocity.y, _currentLift, Time.deltaTime * smoothDeltaSpeed));
+        upLiftNow = _rb.linearVelocityY;
     }
 
     private void ThermalLift(float thermalLift)
