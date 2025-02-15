@@ -7,6 +7,7 @@ public class Paraglider : MonoBehaviour , IFlying , INewInputSystemHandler
     [SerializeField] private float _currentVerticalSpeed = 0;
     [SerializeField] private float _horizontalSpeed = 10;
     [SerializeField] private float _smoothDeltaSpeed = 2;
+    [SerializeField] private bool _currentDirection = false;
 
     public float VerticalSpeed { get => _verticalSpeed; set => _verticalSpeed = value; }
     public float CurrentVerticalSpeed { get => _currentVerticalSpeed; set => _currentVerticalSpeed = value; }
@@ -16,7 +17,6 @@ public class Paraglider : MonoBehaviour , IFlying , INewInputSystemHandler
     private PlayerInput _playerInput;
 
     private Rigidbody2D _rb;
-    private bool _currentDirection = true;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +24,7 @@ public class Paraglider : MonoBehaviour , IFlying , INewInputSystemHandler
         _playerInput = GetComponent<PlayerInput>();
         _rb = GetComponent<Rigidbody2D>();
         _currentVerticalSpeed = _verticalSpeed;
+        _currentDirection = false;
     }
 
     // Update is called once per frame
@@ -42,7 +43,7 @@ public class Paraglider : MonoBehaviour , IFlying , INewInputSystemHandler
 
     public void FlyForward()
     {
-        Vector2 velocity = _rb.linearVelocity;
+        Vector2 velocity = Vector2.zero;
         if (!_currentDirection)
         {
             velocity.x = _horizontalSpeed;
