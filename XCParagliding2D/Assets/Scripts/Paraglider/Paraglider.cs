@@ -1,80 +1,80 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class Paraglider : MonoBehaviour
+public class Paraglider : MonoBehaviour , IFlying , INewInputSystemHandler
 {
-    [SerializeField] private float forwardSpeed = 5f;
-    [SerializeField] private float sinkRate = -2f;
-    [SerializeField] private float smoothDeltaSpeed = 2f;
+    [SerializeField] private float _verticalSpeed = -1;
+    [SerializeField] private float _currentVerticalSpeed = 0;
+    [SerializeField] private float _horizontalSpeed = 10;
+    [SerializeField] private float _smoothDeltaSpeed = 2;
 
-    private float _currentLift = 0;
-    private bool _changeDirection = false;
+    public float VerticalSpeed { get => _verticalSpeed; set => _verticalSpeed = value; }
+    public float CurrentVerticalSpeed { get => _currentVerticalSpeed; set => _currentVerticalSpeed = value; }
+    public float HorizontalSpeed { get => _horizontalSpeed; set => _horizontalSpeed = value; }
+    public float SmoothDeltaSpeed { get => _smoothDeltaSpeed; set => _smoothDeltaSpeed = value; }
+
+    private PlayerInput _playerInput;
+
     private Rigidbody2D _rb;
+    private bool _currentDirection = false;
 
+    // Start is called before the first frame update
     void Start()
     {
+        _playerInput = GetComponent<PlayerInput>();
         _rb = GetComponent<Rigidbody2D>();
-        _rb.gravityScale = 0;
-        _currentLift = sinkRate;
+        _currentVerticalSpeed = _verticalSpeed;
     }
 
-    private void OnEnable()
-    {
-        EventManager.Instance.Subscribe<float>("ThermalLift", ThermalLift);
-    }
-
-    private void OnDisable()
-    {
-        EventManager.Instance.Unsubscribe<float>("ThermalLift", ThermalLift);
-    }
-
+    // Update is called once per frame
     void Update()
     {
-        HandleInput();
+        if (this is INewInputSystemHandler && _playerInput != null)
+        {
+            ProcessInput(_playerInput);
+        }
     }
 
     void FixedUpdate()
     {
-        MoveForward();
-        ApplyLift();
+        FlyForward();
     }
 
-    void HandleInput()
+    public void FlyForward()
     {
-
-        if (Input.GetKey(KeyCode.A))
+        Vector2 velocity = _rb.velocity;
+        if (!_currentDirection)
         {
-            _changeDirection = true;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            _changeDirection = false;
-        }
-        EventManager.Instance.Publish<bool>("ParagliderDirection", _changeDirection);
-    }
-
-    void MoveForward()
-    {
-        Vector2 velocity = _rb.linearVelocity;
-        if (!_changeDirection)
-        {
-            velocity.x = forwardSpeed;
+            velocity.x = _horizontalSpeed;
         }
         else
         {
-            velocity.x = -forwardSpeed;
+            velocity.x = -_horizontalSpeed;
         }
-        velocity.y = Mathf.Lerp(velocity.y, _currentLift, Time.deltaTime * smoothDeltaSpeed);
-        _rb.linearVelocity = velocity;
-        EventManager.Instance.Publish<float>("ParagliderPosition", transform.position.x);
+        velocity.y = Mathf.Lerp(velocity.y, _currentVerticalSpeed, Time.deltaTime * _smoothDeltaSpeed);
+        _rb.velocity = velocity;
     }
 
-    void ApplyLift()
+    public void ProcessInput(PlayerInput input)
     {
-        _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, Mathf.Lerp(_rb.linearVelocity.y, _currentLift, Time.deltaTime * smoothDeltaSpeed));
+        Vector2 moveInput = input.actions["Move"].ReadValue<Vector2>(); // Читаем оси ввода
+
+        if (moveInput.x < 0 && !_currentDirection)
+        {
+            _currentDirection = true; // Влево
+            FlipSprite();
+        }
+        else if (moveInput.x > 0 && _currentDirection)
+        {
+            _currentDirection = false; // Вправо
+            FlipSprite();
+        }
     }
 
-    private void ThermalLift(float thermalLift)
+    private void FlipSprite()
     {
-        _currentLift = thermalLift + sinkRate;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1; // Инвертируем масштаб по X
+        transform.localScale = scale;
     }
 }
