@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:XCParagliding2D/Assets/Scripts/ThermalZone/ThermalGeneratorV2/ThermalSettings.asset.meta
 guid: 5b77f69d763e02547afd6684c9f6b14c
 NativeFormatImporter:
+=======
+guid: adc1b5b66a1a0df4d9fe9bee7c5804a7
+PrefabImporter:
+>>>>>>> origin/main:XCParagliding2D/Assets/Prefabs/Thermal/Thermal.prefab.meta
   externalObjects: {}
   mainObjectFileID: 11400000
   userData: 

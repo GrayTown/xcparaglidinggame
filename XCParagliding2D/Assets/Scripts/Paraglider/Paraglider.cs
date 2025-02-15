@@ -15,6 +15,13 @@ public class Paraglider : MonoBehaviour , IFlying , INewInputSystemHandler
 
     private PlayerInput _playerInput;
 
+<<<<<<< HEAD
+=======
+    public float upLiftNow = 0;
+
+    private float _currentLift = 0;
+    private bool _changeDirection = false;
+>>>>>>> origin/main
     private Rigidbody2D _rb;
     private bool _currentDirection = false;
 
@@ -23,7 +30,23 @@ public class Paraglider : MonoBehaviour , IFlying , INewInputSystemHandler
     {
         _playerInput = GetComponent<PlayerInput>();
         _rb = GetComponent<Rigidbody2D>();
+<<<<<<< HEAD
         _currentVerticalSpeed = _verticalSpeed;
+=======
+        _rb.gravityScale = 0;
+        _currentLift = sinkRate;
+        upLiftNow = sinkRate;
+    }
+
+    private void OnEnable()
+    {
+        EventManager.Instance.Subscribe<float>("ThermalLift", ThermalLift);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.Unsubscribe<float>("ThermalLift", ThermalLift);
+>>>>>>> origin/main
     }
 
     // Update is called once per frame
@@ -57,6 +80,7 @@ public class Paraglider : MonoBehaviour , IFlying , INewInputSystemHandler
 
     public void ProcessInput(PlayerInput input)
     {
+<<<<<<< HEAD
         Vector2 moveInput = input.actions["Move"].ReadValue<Vector2>(); // Читаем оси ввода
 
         if (moveInput.x < 0 && !_currentDirection)
@@ -69,6 +93,10 @@ public class Paraglider : MonoBehaviour , IFlying , INewInputSystemHandler
             _currentDirection = false; // Вправо
             FlipSprite();
         }
+=======
+        _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, Mathf.Lerp(_rb.linearVelocity.y, _currentLift, Time.deltaTime * smoothDeltaSpeed));
+        upLiftNow = _rb.linearVelocityY;
+>>>>>>> origin/main
     }
 
     private void FlipSprite()
