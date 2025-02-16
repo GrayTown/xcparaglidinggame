@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6109438543671336318}
   m_Layer: 0
   m_Name: ThermalUPZone
-  m_TagString: Thermal
+  m_TagString: ThermalUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ AreaEffector2D:
   m_UseGlobalAngle: 0
   m_ForceAngle: 90
   m_ForceMagnitude: 40
-  m_ForceVariation: 25.042568
+  m_ForceVariation: 24.062069
   m_ForceTarget: 0
   m_Drag: 5
   m_AngularDrag: 5

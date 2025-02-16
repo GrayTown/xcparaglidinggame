@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5051758763273325356}
   m_Layer: 0
   m_Name: ThermalDownZone
-  m_TagString: Thermal
+  m_TagString: ThermalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ AreaEffector2D:
   m_UseGlobalAngle: 0
   m_ForceAngle: 270
   m_ForceMagnitude: 80
-  m_ForceVariation: 30.79293
+  m_ForceVariation: 34.887337
   m_ForceTarget: 0
   m_Drag: 5
   m_AngularDrag: 5
