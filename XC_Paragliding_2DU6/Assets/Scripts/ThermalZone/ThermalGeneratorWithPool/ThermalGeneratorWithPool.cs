@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ThermalGenWithPool : MonoBehaviour
+public class ThermalGeneratorWithPool : MonoBehaviour
 {
     public ThermalSettings thermalSettings;
     public Transform cloudBase;
@@ -15,10 +15,6 @@ public class ThermalGenWithPool : MonoBehaviour
     private List<GameObject> activeThermals = new List<GameObject>();
     private List<GameObject> activeClouds = new List<GameObject>();
     private int stackHeight = 250;
-
-    // Используем пул объектов для термальных блоков
-    private Queue<GameObject> thermalBlockPool = new Queue<GameObject>();
-    private Queue<GameObject> cloudPool = new Queue<GameObject>();
 
     private void Start()
     {
@@ -39,9 +35,7 @@ public class ThermalGenWithPool : MonoBehaviour
             float posXShift = Random.Range(thermalSettings.minXSpawn, thermalSettings.maxXSpawn);
             float spawnX = centerX + posXShift;
 
-            // Пытаемся использовать пул объектов, чтобы не создавать новые
-            if (IsObjectInRange(allActiveThermals, spawnX, thermalSettings.thermalSize.x * thermalSettings.spawnXDeltaGenPosCheck) ||
-                IsObjectInRange(activeClouds, spawnX, thermalSettings.cloudSize.x * thermalSettings.spawnXDeltaGenPosCheck))
+            if (IsObjectInRange(allActiveThermals, spawnX, thermalSettings.thermalSize.x * thermalSettings.spawnXDeltaGenPosCheck) || IsObjectInRange(activeClouds, spawnX, thermalSettings.cloudSize.x * thermalSettings.spawnXDeltaGenPosCheck))
             {
                 Debug.Log("Объекты наложились - пропуск генерации");
                 continue;
@@ -53,7 +47,6 @@ public class ThermalGenWithPool : MonoBehaviour
 
     private bool IsObjectInRange(List<GameObject> objects, float x, float range)
     {
-        // Для улучшения производительности можно сохранить объекты, которые близки к текущей позиции
         foreach (var obj in objects)
         {
             if (obj != null)
@@ -80,9 +73,13 @@ public class ThermalGenWithPool : MonoBehaviour
         float direction = Random.value > 0.5f ? 1f : -1f;
         thermalLifeTimeTotal = Random.Range(thermalSettings.thermalLifeTimeMin, thermalSettings.thermalLifeTimeMax);
 
-        // Используем пул облаков
-        GameObject cloud = GetFromPool(cloudPool, thermalSettings.cloudPrefab, new Vector2(spawnX, baseHeight - thermalSettings.cloudTopShift));
-        cloud.transform.localScale = thermalSettings.cloudSize;
+        //GameObject cloud = Instantiate(thermalSettings.cloudPrefab, new Vector2(spawnX, baseHeight - thermalSettings.cloudTopShift), Quaternion.identity, transform);
+        //cloud.transform.localScale = thermalSettings.cloudSize;
+        GameObject cloud = ObjectPoolManager.Instance.GetFromPool("Cloud", new Vector2(spawnX, baseHeight - thermalSettings.cloudTopShift),Quaternion.identity,transform);
+        if (cloud != null) 
+        {
+            cloud.transform.localScale = thermalSettings.cloudSize;
+        }
 
         Animator cloudAnimator = cloud.GetComponent<Animator>();
         if (cloudAnimator != null)
@@ -96,6 +93,7 @@ public class ThermalGenWithPool : MonoBehaviour
         GameObject thermalContainer = new GameObject("Thermal");
         thermalContainer.transform.position = new Vector2(spawnX, currentY);
         thermalContainer.transform.parent = transform;
+        //GameObject thermalContainer = ObjectPoolManager.Instance.GetFromPool("Thermal", new Vector2(spawnX, currentY), Quaternion.identity, transform);
 
         thermalSettings.thermalDownPrefab.GetComponent<AreaEffector2D>().forceVariation = Random.Range(thermalSettings.liftForceDownMin, thermalSettings.liftForceDownMax);
         thermalSettings.thermalUpPrefab.GetComponent<AreaEffector2D>().forceVariation = Random.Range(thermalSettings.liftForceUpMin, thermalSettings.liftForceUpMax);
@@ -104,7 +102,6 @@ public class ThermalGenWithPool : MonoBehaviour
 
         stackHeight = Random.Range(thermalSettings.stackHeightMin, thermalSettings.stackHeightMax);
 
-        // Используем пул термальных блоков
         for (int i = 0; i < stackHeight; i++)
         {
             float noise = Random.Range(-thermalSettings.noiseIntensity, thermalSettings.noiseIntensity);
@@ -116,13 +113,16 @@ public class ThermalGenWithPool : MonoBehaviour
             float downWidth = thermalWidth / 4f;
             float blockWidth = downWidth * 2 + thermalWidth;
 
-            GameObject leftDown = GetFromPool(thermalBlockPool, thermalSettings.thermalDownPrefab, new Vector2(xPos - blockWidth / 2 + downWidth / 2, currentY));
+            //GameObject leftDown = Instantiate(thermalSettings.thermalDownPrefab, new Vector2(xPos - blockWidth / 2 + downWidth / 2, currentY), Quaternion.identity, thermalContainer.transform);
+            GameObject leftDown = ObjectPoolManager.Instance.GetFromPool("ThermalDown", new Vector2(xPos - blockWidth / 2 + downWidth / 2, currentY), Quaternion.identity, thermalContainer.transform);
             leftDown.transform.localScale = new Vector2(downWidth, thermalHeight);
 
-            GameObject upZone = GetFromPool(thermalBlockPool, thermalSettings.thermalUpPrefab, new Vector2(xPos, currentY));
+            //GameObject upZone = Instantiate(thermalSettings.thermalUpPrefab, new Vector2(xPos, currentY), Quaternion.identity, thermalContainer.transform);
+            GameObject upZone = ObjectPoolManager.Instance.GetFromPool("ThermalUp", new Vector2(xPos, currentY), Quaternion.identity, thermalContainer.transform);
             upZone.transform.localScale = thermalSettings.thermalSize;
 
-            GameObject rightDown = GetFromPool(thermalBlockPool, thermalSettings.thermalDownPrefab, new Vector2(xPos + blockWidth / 2 - downWidth / 2, currentY));
+            //GameObject rightDown = Instantiate(thermalSettings.thermalDownPrefab, new Vector2(xPos + blockWidth / 2 - downWidth / 2, currentY), Quaternion.identity, thermalContainer.transform);
+            GameObject rightDown = ObjectPoolManager.Instance.GetFromPool("ThermalDown", new Vector2(xPos + blockWidth / 2 - downWidth / 2, currentY), Quaternion.identity, thermalContainer.transform);
             rightDown.transform.localScale = new Vector2(downWidth, thermalHeight);
 
             GameObject block = new GameObject("ThermalBlock");
@@ -138,14 +138,6 @@ public class ThermalGenWithPool : MonoBehaviour
         activeThermals.Add(thermalContainer);
         allActiveThermals.Add(thermalContainer);
         StartCoroutine(DestroyThermalAfterTime(thermalContainer, cloud, thermalLifeTimeTotal));
-    }
-
-    private GameObject GetFromPool(Queue<GameObject> pool, GameObject prefab, Vector2 position)
-    {
-        GameObject obj = pool.Count > 0 ? pool.Dequeue() : Instantiate(prefab);
-        obj.transform.position = position;
-        obj.SetActive(true);
-        return obj;
     }
 
     private IEnumerator DestroyThermalAfterTime(GameObject thermal, GameObject cloud, float lifetime)
@@ -172,20 +164,25 @@ public class ThermalGenWithPool : MonoBehaviour
         allActiveThermals.Remove(thermal);
         activeThermals.Remove(thermal);
         activeClouds.Remove(cloud);
-        ReturnToPool(cloudPool, cloud);
-        ReturnToPool(thermalBlockPool, thermal);
-    }
 
-    private void ReturnToPool(Queue<GameObject> pool, GameObject obj)
-    {
-        obj.SetActive(false);
-        pool.Enqueue(obj);
+        if (thermal != null) 
+        {
+            ObjectPoolManager.Instance.ReturnToPool("Thermal", thermal);
+            //Destroy(thermal); 
+        }
+        if (cloud != null) 
+        {
+            ObjectPoolManager.Instance.ReturnToPool("Cloud", cloud);
+            //Destroy(cloud); 
+        }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
+
         Gizmos.DrawWireSphere(gameObject.transform.position, 30);
+
         foreach (var thermal in activeThermals)
         {
             if (thermal != null)

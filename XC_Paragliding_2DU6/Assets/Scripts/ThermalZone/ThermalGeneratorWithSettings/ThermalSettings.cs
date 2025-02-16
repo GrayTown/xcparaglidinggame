@@ -40,4 +40,7 @@ public class ThermalSettings : ScriptableObject
     public float spawnChance = 0.7f;
     public float thermalLifeTimeMin = 10f;
     public float thermalLifeTimeMax = 60f;
+
+    [Header("Thermal pool size")]
+    public int poolSize = 10;
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   cloudPrefab: {fileID: 750347035690804116, guid: 56ee898acc20109418d9f591841baed0, type: 3}
   thermalUpPrefab: {fileID: 1673970457978797337, guid: 6c7cc468fe9a466469229fc456821651, type: 3}
   thermalDownPrefab: {fileID: 4872683610579451149, guid: 9fa4c57920803b9428ef334c697af2e6, type: 3}
-  cloudSize: {x: 30, y: 30}
+  cloudSize: {x: 40, y: 40}
   cloudTopShift: 15
   stackHeightMin: 150
   stackHeightMax: 280
@@ -28,8 +28,8 @@ MonoBehaviour:
   noiseIntensity: 20
   liftForceUpMin: 20
   liftForceUpMax: 50
-  liftForceDownMin: 25
-  liftForceDownMax: 40
+  liftForceDownMin: 10
+  liftForceDownMax: 15
   minXSpawn: -300
   maxXSpawn: 300
   spawnXDeltaGenPosCheck: 5
