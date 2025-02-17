@@ -104,8 +104,8 @@ AreaEffector2D:
     m_Bits: 4294967295
   m_UseGlobalAngle: 0
   m_ForceAngle: 270
-  m_ForceMagnitude: 80
-  m_ForceVariation: 14.406618
+  m_ForceMagnitude: 30
+  m_ForceVariation: 1.235774
   m_ForceTarget: 0
   m_Drag: 5
   m_AngularDrag: 5

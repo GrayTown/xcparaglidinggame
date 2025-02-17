@@ -18,23 +18,24 @@ MonoBehaviour:
   cloudSize: {x: 40, y: 40}
   cloudTopShift: 15
   stackHeightMin: 150
-  stackHeightMax: 280
+  stackHeightMax: 380
   verticalSpacing: 0
-  thermalSize: {x: 50, y: 2}
+  thermalSize: {x: 70, y: 2}
   deltaSpacing: 0.5
   xOffsetRange: 100
   frequency: 0.02
   amplitude: 20
   noiseIntensity: 20
-  liftForceUpMin: 20
-  liftForceUpMax: 50
-  liftForceDownMin: 10
-  liftForceDownMax: 15
+  liftForceUpMin: 3
+  liftForceUpMax: 10
+  liftForceDownMin: 0.5
+  liftForceDownMax: 2
   minXSpawn: -300
   maxXSpawn: 300
   spawnXDeltaGenPosCheck: 5
   spawnIntervalMin: 10
   spawnIntervalMax: 30
   spawnChance: 0.7
-  thermalLifeTimeMin: 30
-  thermalLifeTimeMax: 60
+  thermalLifeTimeMin: 60
+  thermalLifeTimeMax: 90
+  poolSize: 10

@@ -15,7 +15,6 @@ public class Paraglider : MonoBehaviour , IFlying , INewInputSystemHandler
     public float SmoothDeltaSpeed { get => _smoothDeltaSpeed; set => _smoothDeltaSpeed = value; }
 
     private PlayerInput _playerInput;
-
     private Rigidbody2D _rb;
 
     // Start is called before the first frame update

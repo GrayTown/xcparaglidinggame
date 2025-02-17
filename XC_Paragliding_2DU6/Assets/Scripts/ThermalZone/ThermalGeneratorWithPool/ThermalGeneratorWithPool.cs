@@ -15,6 +15,9 @@ public class ThermalGeneratorWithPool : MonoBehaviour
     private List<GameObject> activeThermals = new List<GameObject>();
     private List<GameObject> activeClouds = new List<GameObject>();
     private int stackHeight = 250;
+    private int thermalCounter = 0;
+
+    public Dictionary<int, GameObject> thermalDictionary = new Dictionary<int, GameObject>();
 
     private void Start()
     {
@@ -67,6 +70,8 @@ public class ThermalGeneratorWithPool : MonoBehaviour
 
     private void GenerateThermal(float spawnX)
     {
+        int thermalIndex = thermalCounter++;
+
         float baseHeight = cloudBase.position.y;
         float currentY = baseHeight - thermalSettings.cloudSize.y;
         float phaseShift = Random.Range(0, Mathf.PI * 2);
@@ -90,7 +95,7 @@ public class ThermalGeneratorWithPool : MonoBehaviour
         }
         activeClouds.Add(cloud);
 
-        GameObject thermalContainer = new GameObject("Thermal");
+        GameObject thermalContainer = new GameObject("Thermal_" + thermalIndex + "_" + gameObject.name);
         thermalContainer.transform.position = new Vector2(spawnX, currentY);
         thermalContainer.transform.parent = transform;
         //GameObject thermalContainer = ObjectPoolManager.Instance.GetFromPool("Thermal", new Vector2(spawnX, currentY), Quaternion.identity, transform);
@@ -99,7 +104,6 @@ public class ThermalGeneratorWithPool : MonoBehaviour
         thermalSettings.thermalUpPrefab.GetComponent<AreaEffector2D>().forceVariation = Random.Range(thermalSettings.liftForceUpMin, thermalSettings.liftForceUpMax);
         currentLiftForceDown = thermalSettings.thermalDownPrefab.GetComponent<AreaEffector2D>().forceVariation;
         currentLiftForceUp = thermalSettings.thermalUpPrefab.GetComponent<AreaEffector2D>().forceVariation;
-
         stackHeight = Random.Range(thermalSettings.stackHeightMin, thermalSettings.stackHeightMax);
 
         for (int i = 0; i < stackHeight; i++)
@@ -137,6 +141,7 @@ public class ThermalGeneratorWithPool : MonoBehaviour
 
         activeThermals.Add(thermalContainer);
         allActiveThermals.Add(thermalContainer);
+        thermalDictionary.Add(thermalIndex, thermalContainer);
         StartCoroutine(DestroyThermalAfterTime(thermalContainer, cloud, thermalLifeTimeTotal));
     }
 
@@ -148,6 +153,8 @@ public class ThermalGeneratorWithPool : MonoBehaviour
         while (elapsedTime < lifetime)
         {
             elapsedTime += Time.deltaTime;
+            //EventManager.Instance.Publish("RiseUp", currentLiftForceUp);
+            //EventManager.Instance.Publish("RiseDown", currentLiftForceDown);
             foreach (var effector in effectors)
             {
                 if (currentLiftForceDown > currentLiftForceUp)
