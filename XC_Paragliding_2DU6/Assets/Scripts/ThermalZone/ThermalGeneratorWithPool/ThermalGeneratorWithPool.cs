@@ -17,7 +17,8 @@ public class ThermalGeneratorWithPool : MonoBehaviour
     private int stackHeight = 250;
     private int thermalCounter = 0;
 
-    public Dictionary<int, GameObject> thermalDictionary = new Dictionary<int, GameObject>();
+    private int thermalIndex = 0;
+    public Dictionary<int, GeneratedThermalData> thermalDictionary = new Dictionary<int, GeneratedThermalData>();
 
     private void Start()
     {
@@ -70,7 +71,7 @@ public class ThermalGeneratorWithPool : MonoBehaviour
 
     private void GenerateThermal(float spawnX)
     {
-        int thermalIndex = thermalCounter++;
+        thermalIndex = thermalCounter++;
 
         float baseHeight = cloudBase.position.y;
         float currentY = baseHeight - thermalSettings.cloudSize.y;
@@ -95,7 +96,7 @@ public class ThermalGeneratorWithPool : MonoBehaviour
         }
         activeClouds.Add(cloud);
 
-        GameObject thermalContainer = new GameObject("Thermal_" + thermalIndex + "_" + gameObject.name);
+        GameObject thermalContainer = new GameObject("Thermal_" + thermalIndex);
         thermalContainer.transform.position = new Vector2(spawnX, currentY);
         thermalContainer.transform.parent = transform;
         //GameObject thermalContainer = ObjectPoolManager.Instance.GetFromPool("Thermal", new Vector2(spawnX, currentY), Quaternion.identity, transform);
@@ -141,7 +142,9 @@ public class ThermalGeneratorWithPool : MonoBehaviour
 
         activeThermals.Add(thermalContainer);
         allActiveThermals.Add(thermalContainer);
-        thermalDictionary.Add(thermalIndex, thermalContainer);
+        thermalDictionary.Add(thermalIndex, new GeneratedThermalData(thermalIndex, thermalContainer, gameObject.name));
+        EventManager.Instance.Publish<Dictionary<int, GeneratedThermalData>>("RiseUp", thermalDictionary);
+
         StartCoroutine(DestroyThermalAfterTime(thermalContainer, cloud, thermalLifeTimeTotal));
     }
 
@@ -168,6 +171,8 @@ public class ThermalGeneratorWithPool : MonoBehaviour
             }
             yield return null;
         }
+        thermalDictionary.Remove(thermalIndex);
+        EventManager.Instance.Publish<Dictionary<int, GeneratedThermalData>>("RiseUp", thermalDictionary);
         allActiveThermals.Remove(thermal);
         activeThermals.Remove(thermal);
         activeClouds.Remove(cloud);

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameLogger : MonoBehaviour
@@ -7,7 +8,7 @@ public class GameLogger : MonoBehaviour
         EventManager.Instance.Subscribe<string>("GameStarted", OnGameStarted,0);
         EventManager.Instance.Subscribe<string>("GameEnded", OnGameEnded,0);
         EventManager.Instance.Subscribe<string>("GameStarted", OnGameInitialize,1);
-        EventManager.Instance.Subscribe<float>("RiseUp", RiseUp);
+        EventManager.Instance.Subscribe<Dictionary<int, GeneratedThermalData>>("RiseUp", RiseUp);
     }
 
     private void OnDisable()
@@ -15,7 +16,7 @@ public class GameLogger : MonoBehaviour
         EventManager.Instance.Unsubscribe<string>("GameStarted", OnGameStarted);
         EventManager.Instance.Unsubscribe<string>("GameEnded", OnGameEnded);
         EventManager.Instance.Unsubscribe<string>("GameStarted", OnGameInitialize);
-        EventManager.Instance.Unsubscribe<float>("RiseUp", RiseUp);
+        EventManager.Instance.Unsubscribe<Dictionary<int, GeneratedThermalData>>("RiseUp", RiseUp);
     }
 
     private void OnGameStarted(string message)
@@ -33,9 +34,12 @@ public class GameLogger : MonoBehaviour
         Debug.Log($"[GameLogger] Game {message} -> я подписчик на это же событие, но класс - сработаю до UI");
     }
 
-    private void RiseUp(float force) 
+    private void RiseUp(Dictionary<int, GeneratedThermalData> thermalDictionary) 
     {
-        Debug.Log(force);
+        foreach (var thd in thermalDictionary) 
+        {
+            Debug.Log($"Key: {thd.Key}, ### Value: ID = {thd.Value.ID} ### ParentName = {thd.Value.ParentName} ### Name = {thd.Value.ThermalGameObject.name}");
+        }
     }
 
 }
