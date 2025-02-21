@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 2ed5532390764c44c9b43015a4f94dfa
+guid: c1ec9b7423600b544852a59607eb3329
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5936356172364887011
-    second: R_0
-  - first:
-      213: 8526818388472559999
-    second: R_1
-  - first:
-      213: -6679458008023962469
-    second: R_2
+      213: -2313764957757266714
+    second: Sky2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,9 +46,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -78,9 +72,9 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -132,57 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: R_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 343
-        width: 1024
-        height: 681
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3e3b1029c7c226250800000000000000
-      internalID: 5936356172364887011
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: R_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 182
-        width: 1024
-        height: 155
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f79fc25b528555670800000000000000
-      internalID: 8526818388472559999
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: R_2
+      name: Sky2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 165
+        width: 1
+        height: 638
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b9ce79bb45ccd43a0800000000000000
-      internalID: -6679458008023962469
+      spriteID: 6e4a12f970bd3efd0800000000000000
+      internalID: -2313764957757266714
       vertices: []
       indices: 
       edges: []
@@ -201,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -211,9 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      R_0: 5936356172364887011
-      R_1: 8526818388472559999
-      R_2: -6679458008023962469
+      Sky2_0: -2313764957757266714
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
