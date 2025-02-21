@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class ThermalGeneratorWithPool : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class ThermalGeneratorWithPool : MonoBehaviour
     private List<GameObject> activeThermals = new List<GameObject>();
     private List<GameObject> activeClouds = new List<GameObject>();
     private int stackHeight = 250;
-    private int thermalCounter = 0;
+    //private int thermalCounter = 0;
 
     private int thermalIndex = 0;
     public Dictionary<int, GeneratedThermalData> thermalDictionary = new Dictionary<int, GeneratedThermalData>();
@@ -44,7 +45,7 @@ public class ThermalGeneratorWithPool : MonoBehaviour
                 Debug.Log("Объекты наложились - пропуск генерации");
                 continue;
             }
-
+            thermalIndex++;
             GenerateThermal(spawnX);
         }
     }
@@ -71,8 +72,6 @@ public class ThermalGeneratorWithPool : MonoBehaviour
 
     private void GenerateThermal(float spawnX)
     {
-        thermalIndex = thermalCounter++;
-
         float baseHeight = cloudBase.position.y;
         float currentY = baseHeight - thermalSettings.cloudSize.y;
         float phaseShift = Random.Range(0, Mathf.PI * 2);
@@ -144,7 +143,6 @@ public class ThermalGeneratorWithPool : MonoBehaviour
         allActiveThermals.Add(thermalContainer);
         thermalDictionary.Add(thermalIndex, new GeneratedThermalData(thermalIndex, thermalContainer, gameObject.name));
         EventManager.Instance.Publish<Dictionary<int, GeneratedThermalData>>("RiseUp", thermalDictionary);
-
         StartCoroutine(DestroyThermalAfterTime(thermalContainer, cloud, thermalLifeTimeTotal));
     }
 
@@ -156,8 +154,6 @@ public class ThermalGeneratorWithPool : MonoBehaviour
         while (elapsedTime < lifetime)
         {
             elapsedTime += Time.deltaTime;
-            //EventManager.Instance.Publish("RiseUp", currentLiftForceUp);
-            //EventManager.Instance.Publish("RiseDown", currentLiftForceDown);
             foreach (var effector in effectors)
             {
                 if (currentLiftForceDown > currentLiftForceUp)
@@ -172,7 +168,7 @@ public class ThermalGeneratorWithPool : MonoBehaviour
             yield return null;
         }
         thermalDictionary.Remove(thermalIndex);
-        EventManager.Instance.Publish<Dictionary<int, GeneratedThermalData>>("RiseUp", thermalDictionary);
+        EventManager.Instance.Publish<Dictionary<int, GeneratedThermalData>>("RiseUpDel", thermalDictionary);
         allActiveThermals.Remove(thermal);
         activeThermals.Remove(thermal);
         activeClouds.Remove(cloud);
