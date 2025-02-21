@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MiddleLayer
   m_EditorClassIdentifier: 
   layerName: MiddleLayer
-  speedX: -26.1
+  speedX: -2.21
   speedY: 0.5
   smoothness: 0.15
   startPositionX: 0

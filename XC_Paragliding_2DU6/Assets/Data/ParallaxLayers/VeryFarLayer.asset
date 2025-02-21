@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VeryFarLayer
   m_EditorClassIdentifier: 
   layerName: VeryFarLayer
-  speedX: 1
+  speedX: 0.74
   speedY: 0.5
   smoothness: 0.1
   startPositionX: 0

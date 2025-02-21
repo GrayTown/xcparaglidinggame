@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FarLayer
   m_EditorClassIdentifier: 
   layerName: FarLayer
-  speedX: -4
+  speedX: -0.83
   speedY: 0.2
   smoothness: 0.25
   startPositionX: 0
