@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewParallaxLayer", menuName = "XC/Parallax/Layer Data")]
+[CreateAssetMenu(fileName = "ParallaxLayer", menuName = "XC/Parallax/Layer Data")]
 public class ParallaxLayerData : ScriptableObject
 {
     public string layerName = "NewLayer";

@@ -870,11 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9816a7d9820144a9f4f7eb9b5eece0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _verticalSpeed: -1
-  _currentVerticalSpeed: 0
-  _horizontalSpeed: 7
-  _smoothDeltaSpeed: 1
-  _currentDirection: 1
+  paraplanSettings: {fileID: 11400000, guid: 6afea854f763ce94c8d9f9d0f38fd827, type: 2}
 --- !u!114 &3629349257553890329
 MonoBehaviour:
   m_ObjectHideFlags: 0
