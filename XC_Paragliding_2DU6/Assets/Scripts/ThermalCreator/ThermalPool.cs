@@ -11,8 +11,13 @@ public class ThermalPool : MonoBehaviour
     [Header("Префаб термика")]
     public GameObject thermalPrefab;
 
+    [Header("Префаб облака")]
+    public GameObject cloudPrefab;
+
     private Queue<VerticalLine> thermalPool = new Queue<VerticalLine>();
     private List<VerticalLine> activeThermals = new List<VerticalLine>(); // Список активных термиков
+
+    private Queue<GameObject> cloudPool = new Queue<GameObject>();
 
     private void Awake()
     {
@@ -21,9 +26,9 @@ public class ThermalPool : MonoBehaviour
 
     public VerticalLine GetThermal(Vector3 basePosition)
     {
-        if (thermalPrefab == null || thermalSettings == null)
+        if (thermalPrefab == null || thermalSettings == null || cloudPrefab == null)
         {
-            Debug.LogError("ThermalPool: Не заданы thermalPrefab или thermalSettings!");
+            Debug.LogError("ThermalPool: Не заданы thermalPrefab ? cloudPrefab или thermalSettings!");
             return null;
         }
 
@@ -47,6 +52,7 @@ public class ThermalPool : MonoBehaviour
         }
 
         VerticalLine thermal;
+
         if (thermalPool.Count > 0)
         {
             thermal = thermalPool.Dequeue();
@@ -54,6 +60,7 @@ public class ThermalPool : MonoBehaviour
         else
         {
             thermal = Instantiate(thermalPrefab, transform).GetComponent<VerticalLine>();
+
         }
 
         Transform cloudBase = GameObject.FindGameObjectWithTag("CloudBase")?.transform;
@@ -70,7 +77,7 @@ public class ThermalPool : MonoBehaviour
 
         thermal.parentObject = new GameObject("ThermalBase").transform;
         thermal.parentObject.position = spawnPosition;
-        thermal.cloudObject = cloudBase;
+        thermal.cloudBaseObject = cloudBase;
 
         // ---- Генерация случайных параметров ----
         thermal.addLiftForce = thermalSettings.addLiftForce;
@@ -92,17 +99,50 @@ public class ThermalPool : MonoBehaviour
         thermal.gameObject.SetActive(true);
         thermal.ResetThermal();
 
+        // Получаем или создаем облако
+        GameObject cloud;
+        if (cloudPool.Count > 0)
+        {
+            cloud = cloudPool.Dequeue();
+            cloud.transform.position = new Vector2(spawnPosition.x + thermal.angle,cloudBase.position.y);
+            cloud.SetActive(true);
+        }
+        else
+        {
+            cloud = Instantiate(cloudPrefab, new Vector2(spawnPosition.x + thermal.angle, cloudBase.position.y), Quaternion.identity);
+            cloud.transform.SetParent(transform);
+        }
+
+        // Устанавливаем скорость анимации облака
+        Animator cloudAnimator = cloud.GetComponent<Animator>();
+        if (cloudAnimator != null)
+        {
+            cloudAnimator.speed = cloudAnimator.runtimeAnimatorController.animationClips[0].length / thermal.thermalLifetime;
+            cloudAnimator.Play(0);
+        }
+
+        thermal.cloudObject = cloud;
+
+        StartCoroutine(RemoveThermalAfterLifetime(thermal, cloud, thermal.thermalLifetime));
+
         // Добавляем термик в список активных термиков
         activeThermals.Add(thermal);
 
         return thermal;
     }
 
-    public void ReturnThermal(VerticalLine thermal)
+    private System.Collections.IEnumerator RemoveThermalAfterLifetime(VerticalLine thermal, GameObject cloud, float lifetime)
+    {
+        yield return new WaitForSeconds(lifetime);
+        ReturnThermal(thermal, cloud);
+    }
+
+    public void ReturnThermal(VerticalLine thermal, GameObject cloud)
     {
         thermal.gameObject.SetActive(false);
-        activeThermals.Remove(thermal); // Убираем из списка активных термиков
+        cloud.SetActive(false);
+        activeThermals.Remove(thermal);
         thermalPool.Enqueue(thermal);
+        cloudPool.Enqueue(cloud);
     }
 }
-

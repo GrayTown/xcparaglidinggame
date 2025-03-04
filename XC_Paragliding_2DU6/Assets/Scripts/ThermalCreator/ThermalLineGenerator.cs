@@ -8,7 +8,8 @@ public class VerticalLine : MonoBehaviour
 {
     [Header("Границы термика")]
     public Transform parentObject; // Основание линии
-    public Transform cloudObject;  // Вершина линии
+    public Transform cloudBaseObject;  // Вершина линии
+    public GameObject cloudObject;  // Вершина линии
 
     [Header("Точки перегиба, угол наклона, толщина")]
     public int pointCount = 2; // Количество точек линии
@@ -70,7 +71,7 @@ public class VerticalLine : MonoBehaviour
     {
         if (!toDestroy && this.isActiveAndEnabled)
         {
-            if (parentObject != null && cloudObject != null)
+            if (parentObject != null && cloudBaseObject != null)
             {
                 time += Time.deltaTime * speed;
 
@@ -85,7 +86,7 @@ public class VerticalLine : MonoBehaviour
             if (elapsedTime >= thermalLifetime)
             {
                 toDestroy = true; // Удаляем термик по истечении времени
-                ThermalPool.Instance.ReturnThermal(this); // Возвращаем в пул
+                ThermalPool.Instance.ReturnThermal(this,cloudObject); // Возвращаем в пул
             }
         }
     }
@@ -109,7 +110,7 @@ public class VerticalLine : MonoBehaviour
             {
                 float t = (float)i / (pointCount - 1);
                 float baseX = parentObject.position.x;
-                float baseY = Mathf.Lerp(parentObject.position.y, cloudObject.position.y, t);
+                float baseY = Mathf.Lerp(parentObject.position.y, cloudBaseObject.position.y, t);
                 float offsetX = Mathf.Sin(angleRad) * (baseY - parentObject.position.y);
 
                 // Вычисляем колебания с плавностью
