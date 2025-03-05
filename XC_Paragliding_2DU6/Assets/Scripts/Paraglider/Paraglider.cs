@@ -26,6 +26,8 @@ public class Paraglider : MonoBehaviour
     private float _smoothDeltaSpeed = 2;
     private bool _currentDirection = false;
 
+    public float resultHorizontalSpeed = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,12 +66,37 @@ public class Paraglider : MonoBehaviour
         Vector2 velocity = Vector2.zero;
         if (!_currentDirection)
         {
-            velocity.x = _currentHorizontalSpeed;
+            // летим вправо ----->
+            if (_currentHorizontalSpeed >= 0)
+            {
+                // ветер вправо ----->
+                velocity.x = _horizontalSpeed + _currentHorizontalSpeed;
+                resultHorizontalSpeed = velocity.x;
+            }
+            else 
+            {
+                // ветер влево <-----
+                velocity.x = _horizontalSpeed + _currentHorizontalSpeed;
+                resultHorizontalSpeed = velocity.x;
+            }
         }
         else
         {
-            velocity.x = -_currentHorizontalSpeed;
+            // летим влево <-----
+            if (_currentHorizontalSpeed >= 0)
+            {
+                // ветер вправо ----->
+                velocity.x = - _horizontalSpeed + _currentHorizontalSpeed;
+                resultHorizontalSpeed = velocity.x;
+            }
+            else
+            {
+                // ветер влево <-----
+                velocity.x = - _horizontalSpeed + _currentHorizontalSpeed;
+                resultHorizontalSpeed = velocity.x;
+            }
         }
+
         if (_currentVerticalSpeed > -1 && _currentVerticalSpeed <= 0)
         {
             _currentVerticalSpeed = _verticalSpeed;

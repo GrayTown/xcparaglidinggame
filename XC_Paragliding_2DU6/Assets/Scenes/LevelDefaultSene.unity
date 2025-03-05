@@ -2653,9 +2653,17 @@ PrefabInstance:
       propertyPath: terrainCollider
       value: 
       objectReference: {fileID: 1258147844}
+    - target: {fileID: 7469751083533470788, guid: 0826a395ec2a3b94c87dedff4ffbebdd, type: 3}
+      propertyPath: m_LocalAABB.m_Extent.y
+      value: 1.5539727
+      objectReference: {fileID: 0}
     - target: {fileID: 7710631942261425211, guid: 0826a395ec2a3b94c87dedff4ffbebdd, type: 3}
       propertyPath: m_Creator
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010820419840726698, guid: 0826a395ec2a3b94c87dedff4ffbebdd, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8049707177349483641, guid: 0826a395ec2a3b94c87dedff4ffbebdd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6109,6 +6117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6103ddde0d7c2f4da7169986d311a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 883029ce46974dd428386bc2b6e8e34b, type: 2}
+  levelBounds: {fileID: 959418502}
   gizmosPointSize: 20
 --- !u!4 &1985775231
 Transform:

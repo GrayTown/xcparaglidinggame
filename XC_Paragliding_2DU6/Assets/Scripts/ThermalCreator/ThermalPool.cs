@@ -140,8 +140,11 @@ public class ThermalPool : MonoBehaviour
 
     public void ReturnThermal(VerticalLine thermal, GameObject cloud)
     {
-        thermal.gameObject.SetActive(false);
+        Debug.Log("!!!!!!!!!!! Возвращаю термик в пул" + thermal.name);
         cloud.SetActive(false);
+        thermal.elapsedTime = 0;
+        thermal.thermalLifetime = 0;
+        thermal.gameObject.SetActive(false);
         activeThermals.Remove(thermal);
         thermalPool.Enqueue(thermal);
         cloudPool.Enqueue(cloud);

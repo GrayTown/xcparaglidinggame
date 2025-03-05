@@ -17,6 +17,24 @@ MonoBehaviour:
   addLiftForce: 20
   liftForceY: 4
   minLiftForceY: 0.5
+  zoneCountX: 16
+  zoneForcesX:
+  - -0.5
+  - -0.3
+  - -0.1
+  - 0.1
+  - 0.3
+  - 0.5
+  - 0.7
+  - 1
+  - 1
+  - 0.7
+  - 0.5
+  - 0.3
+  - 0.1
+  - -0.1
+  - -0.3
+  - -0.5
   thremalMinWidht: 30
   thremalMaxWidht: 90
   minPointCount: 5

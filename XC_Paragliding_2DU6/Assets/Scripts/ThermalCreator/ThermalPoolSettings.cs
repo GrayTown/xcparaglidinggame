@@ -18,6 +18,10 @@ public class ThermalPoolSettings : ScriptableObject
     [Header("Минимальная сила перед исчезновением по Y")]
     [Range(0, 10)] public float minLiftForceY = 0.5f; // Минимальная сила перед исчезновением
 
+    [Header("Базовая скороподъемность по X")]
+    public int zoneCountX = 6; // Количество зон по X
+    public float[] zoneForcesX; // Массив сил для зон
+
 
     [Header("Ширина термика")]
     [Range(30, 500)] public float thremalMinWidht = 30;
