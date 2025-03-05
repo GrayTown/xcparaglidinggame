@@ -16,7 +16,6 @@ public class ThermalPool : MonoBehaviour
 
     private Queue<VerticalLine> thermalPool = new Queue<VerticalLine>();
     private List<VerticalLine> activeThermals = new List<VerticalLine>(); // Список активных термиков
-
     private Queue<GameObject> cloudPool = new Queue<GameObject>();
 
     private void Awake()
@@ -104,12 +103,14 @@ public class ThermalPool : MonoBehaviour
         if (cloudPool.Count > 0)
         {
             cloud = cloudPool.Dequeue();
-            cloud.transform.position = new Vector2(spawnPosition.x + thermal.angle,cloudBase.position.y);
+            cloud.transform.position = new Vector2(spawnPosition.x + thermal.angle * 2,cloudBase.position.y + thermal.colliderThinkness / 2 + thermalSettings.deltaCloudHighY * thermalSettings.cloudSize.y);
+            cloud.transform.localScale = new Vector3(thermal.colliderThinkness * thermalSettings.cloudSize.x, thermal.colliderThinkness * thermalSettings.cloudSize.y, 0);
             cloud.SetActive(true);
         }
         else
         {
-            cloud = Instantiate(cloudPrefab, new Vector2(spawnPosition.x + thermal.angle, cloudBase.position.y), Quaternion.identity);
+            cloud = Instantiate(cloudPrefab, new Vector2(spawnPosition.x + thermal.angle * 2, cloudBase.position.y + thermal.colliderThinkness / 2 + thermalSettings.deltaCloudHighY * thermalSettings.cloudSize.y), Quaternion.identity);
+            cloud.transform.localScale = new Vector3(thermal.colliderThinkness * thermalSettings.cloudSize.x, thermal.colliderThinkness * thermalSettings.cloudSize.y, 0);
             cloud.transform.SetParent(transform);
         }
 

@@ -3,6 +3,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ThermalPoolSettings", menuName = "XC/Thermal Pool/Thermal Pool Settings")]
 public class ThermalPoolSettings : ScriptableObject
 {
+    [Header("Множитель размера облака")]
+    public Vector2 cloudSize = new Vector2(1f,1f);
+
+    [Header("дельта превышения облака над термиком")]
+    public float deltaCloudHighY = 20f;
+
     [Header("Базовый множитель скороподъемности")]
     [Range(2, 100)] public float addLiftForce = 1f;
 

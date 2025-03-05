@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4302db6d6cdd94bad4239d4e69d0fb, type: 3}
   m_Name: ThermalPoolSettings
   m_EditorClassIdentifier: 
+  cloudSize: {x: 1.5, y: 2}
+  deltaCloudHighY: 20
   addLiftForce: 20
   liftForceY: 4
   minLiftForceY: 0.5
