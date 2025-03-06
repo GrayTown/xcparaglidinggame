@@ -204,7 +204,7 @@ SpriteRenderer:
   m_Size: {x: 0.02278148, y: 0.0065568746}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &40818409
@@ -500,7 +500,7 @@ SpriteRenderer:
   m_Size: {x: 0.039421976, y: 0.010146246}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &189887356
@@ -656,7 +656,7 @@ SpriteRenderer:
   m_Size: {x: 0.023105253, y: 0.0059439302}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &229567329
@@ -1046,54 +1046,9 @@ SpriteRenderer:
   m_Size: {x: 0.039421976, y: 0.010146246}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &412133792
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 412133793}
-  - component: {fileID: 412133794}
-  m_Layer: 0
-  m_Name: ThermalPoint (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &412133793
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412133792}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1456, y: -332, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1876318529}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &412133794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412133792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39fa1bf908d27cc4ea746cfc5d5749f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gizmosPointSize: 14
 --- !u!1 &440498633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,7 +1164,7 @@ SpriteRenderer:
   m_Size: {x: 0.039421976, y: 0.010146246}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &461726063
@@ -1297,7 +1252,7 @@ SpriteRenderer:
   m_Size: {x: 0.039421976, y: 0.010146246}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &514605761
@@ -1442,7 +1397,7 @@ SpriteRenderer:
   m_Size: {x: 0.054255012, y: 0.018303689}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &604933024
@@ -1803,7 +1758,7 @@ SpriteRenderer:
   m_Size: {x: 0.040905066, y: 0.010640638}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &710654520
@@ -1953,7 +1908,7 @@ SpriteRenderer:
   m_Size: {x: 0.040905066, y: 0.010640638}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &764454002
@@ -2102,51 +2057,6 @@ Transform:
   - {fileID: 1040402949}
   m_Father: {fileID: 2126311457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &772275535
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 772275536}
-  - component: {fileID: 772275537}
-  m_Layer: 0
-  m_Name: ThermalPoint (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &772275536
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772275535}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33, y: -389, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1876318529}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &772275537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772275535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39fa1bf908d27cc4ea746cfc5d5749f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gizmosPointSize: 14
 --- !u!1 &775132365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2232,7 +2142,7 @@ SpriteRenderer:
   m_Size: {x: 0.063595444, y: 0.025486818}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &800068678
@@ -2320,7 +2230,7 @@ SpriteRenderer:
   m_Size: {x: 0.023638539, y: 0.0068763685}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &810232904
@@ -2354,51 +2264,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1817507}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &868715654
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 868715655}
-  - component: {fileID: 868715656}
-  m_Layer: 0
-  m_Name: ThermalPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &868715655
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868715654}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -525, y: -394, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1876318529}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &868715656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868715654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39fa1bf908d27cc4ea746cfc5d5749f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gizmosPointSize: 14
 --- !u!1 &869904111
 GameObject:
   m_ObjectHideFlags: 0
@@ -2799,7 +2664,7 @@ SpriteRenderer:
   m_Size: {x: 0.036751032, y: 0.01647051}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &994382219
@@ -2887,7 +2752,7 @@ SpriteRenderer:
   m_Size: {x: 0.063595444, y: 0.025486818}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1007334411
@@ -3067,7 +2932,7 @@ SpriteRenderer:
   m_Size: {x: 0.039421976, y: 0.010146246}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1040402948
@@ -3154,7 +3019,7 @@ SpriteRenderer:
   m_Size: {x: 0.02278148, y: 0.0065568746}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1104288132
@@ -3409,96 +3274,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1163009940
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1163009941}
-  - component: {fileID: 1163009942}
-  m_Layer: 0
-  m_Name: ThermalPoint (5)
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1163009941
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163009940}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1998, y: -352, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1876318529}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1163009942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163009940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39fa1bf908d27cc4ea746cfc5d5749f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gizmosPointSize: 14
---- !u!1 &1181823207
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1181823208}
-  - component: {fileID: 1181823209}
-  m_Layer: 0
-  m_Name: ThermalPoint (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1181823208
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181823207}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 926, y: -328, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1876318529}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1181823209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181823207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39fa1bf908d27cc4ea746cfc5d5749f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gizmosPointSize: 14
 --- !u!1 &1190353535
 GameObject:
   m_ObjectHideFlags: 0
@@ -3868,7 +3643,7 @@ SpriteRenderer:
   m_Size: {x: 0.054255012, y: 0.018303689}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1330043509
@@ -4213,7 +3988,7 @@ SpriteRenderer:
   m_Size: {x: 0.023105253, y: 0.0059439302}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1398450709
@@ -4301,7 +4076,7 @@ SpriteRenderer:
   m_Size: {x: 0.03135331, y: 0.011828511}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1423429252
@@ -4467,7 +4242,7 @@ SpriteRenderer:
   m_Size: {x: 0.040905066, y: 0.010640638}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1505621687
@@ -4642,7 +4417,7 @@ SpriteRenderer:
   m_Size: {x: 0.039421976, y: 0.010146246}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1518433631
@@ -4676,51 +4451,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1364544364}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1536210400
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1536210401}
-  - component: {fileID: 1536210402}
-  m_Layer: 0
-  m_Name: ThermalPoint (7)
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1536210401
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536210400}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2908, y: -317, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1876318529}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1536210402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536210400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39fa1bf908d27cc4ea746cfc5d5749f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gizmosPointSize: 14
 --- !u!1 &1558654558
 GameObject:
   m_ObjectHideFlags: 0
@@ -4988,7 +4718,7 @@ SpriteRenderer:
   m_Size: {x: 0.063595444, y: 0.025486818}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1604900647
@@ -5285,7 +5015,7 @@ SpriteRenderer:
   m_Size: {x: 0.013352244, y: 0.0038411845}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1742419541
@@ -5373,54 +5103,9 @@ SpriteRenderer:
   m_Size: {x: 0.054255012, y: 0.018303689}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1747628889
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1747628890}
-  - component: {fileID: 1747628891}
-  m_Layer: 0
-  m_Name: ThermalPoint (6)
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1747628890
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747628889}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2473, y: -362, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1876318529}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1747628891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747628889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39fa1bf908d27cc4ea746cfc5d5749f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gizmosPointSize: 14
 --- !u!1 &1828518890
 GameObject:
   m_ObjectHideFlags: 0
@@ -5506,7 +5191,7 @@ SpriteRenderer:
   m_Size: {x: 0.023105253, y: 0.0059439302}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1838371358
@@ -5626,7 +5311,7 @@ SpriteRenderer:
   m_Size: {x: 0.039421976, y: 0.010146246}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1849869725
@@ -5714,86 +5399,9 @@ SpriteRenderer:
   m_Size: {x: 0.039421976, y: 0.010146246}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1876318527
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1876318529}
-  - component: {fileID: 1876318528}
-  - component: {fileID: 1876318530}
-  m_Layer: 0
-  m_Name: ThermalManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1876318528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1876318527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e56a7ae90c4428a408fd51c01995aa8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 868715655}
-  - {fileID: 772275536}
-  - {fileID: 2071786252}
-  - {fileID: 1181823208}
-  - {fileID: 412133793}
-  - {fileID: 1163009941}
-  - {fileID: 1747628890}
-  - {fileID: 1536210401}
---- !u!4 &1876318529
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1876318527}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 793.87396, y: 134.29784, z: -214.7439}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 868715655}
-  - {fileID: 772275536}
-  - {fileID: 2071786252}
-  - {fileID: 1181823208}
-  - {fileID: 412133793}
-  - {fileID: 1163009941}
-  - {fileID: 1747628890}
-  - {fileID: 1536210401}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1876318530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1876318527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9f2f14992f13564aba21ac7cd012aca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thermalSettings: {fileID: 11400000, guid: 7c51bf38f1a55db498da413388f797ec, type: 2}
-  thermalPrefab: {fileID: 2137365053255912636, guid: 8205b0423f420f34ead272c795471c9d, type: 3}
-  cloudPrefab: {fileID: 750347035690804116, guid: 56ee898acc20109418d9f591841baed0, type: 3}
 --- !u!1 &1880979359
 GameObject:
   m_ObjectHideFlags: 0
@@ -5966,7 +5574,7 @@ SpriteRenderer:
   m_Size: {x: 0.02278148, y: 0.0065568746}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1959410455
@@ -6054,7 +5662,7 @@ SpriteRenderer:
   m_Size: {x: 0.039421976, y: 0.010146246}
   m_AdaptiveModeThreshold: 0.321
   m_SpriteTileMode: 1
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1973202892
@@ -6087,53 +5695,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 390505395}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1985775229
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1985775231}
-  - component: {fileID: 1985775230}
-  m_Layer: 0
-  m_Name: WindManager
-  m_TagString: Untagged
-  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1985775230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1985775229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6103ddde0d7c2f4da7169986d311a70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 883029ce46974dd428386bc2b6e8e34b, type: 2}
-  levelBounds: {fileID: 959418502}
-  gizmosPointSize: 20
---- !u!4 &1985775231
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1985775229}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -39.05534, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1987318557
 GameObject:
@@ -6312,51 +5873,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1490405790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2071786251
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2071786252}
-  - component: {fileID: 2071786253}
-  m_Layer: 0
-  m_Name: ThermalPoint (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2071786252
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2071786251}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 436, y: -376, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1876318529}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2071786253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2071786251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39fa1bf908d27cc4ea746cfc5d5749f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gizmosPointSize: 14
 --- !u!1 &2100253726
 GameObject:
   m_ObjectHideFlags: 0
@@ -6920,6 +6436,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &5084742917653489201
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4443350206222765332, guid: cc0ca284b20bedd4d966993543a677bb, type: 3}
+      propertyPath: m_Name
+      value: ThermalManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456264735658276431, guid: cc0ca284b20bedd4d966993543a677bb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 793.87396
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456264735658276431, guid: cc0ca284b20bedd4d966993543a677bb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 134.29784
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456264735658276431, guid: cc0ca284b20bedd4d966993543a677bb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -214.7439
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456264735658276431, guid: cc0ca284b20bedd4d966993543a677bb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456264735658276431, guid: cc0ca284b20bedd4d966993543a677bb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456264735658276431, guid: cc0ca284b20bedd4d966993543a677bb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456264735658276431, guid: cc0ca284b20bedd4d966993543a677bb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456264735658276431, guid: cc0ca284b20bedd4d966993543a677bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456264735658276431, guid: cc0ca284b20bedd4d966993543a677bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456264735658276431, guid: cc0ca284b20bedd4d966993543a677bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cc0ca284b20bedd4d966993543a677bb, type: 3}
 --- !u!1 &6119957330254096539
 GameObject:
   m_ObjectHideFlags: 0
@@ -6952,6 +6525,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1489129883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7256275203255361710
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3209013059073432155, guid: 3e8b8b0efe4eec143a49fbd5ebc10183, type: 3}
+      propertyPath: levelBounds
+      value: 
+      objectReference: {fileID: 959418502}
+    - target: {fileID: 3228086283381663224, guid: 3e8b8b0efe4eec143a49fbd5ebc10183, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228086283381663224, guid: 3e8b8b0efe4eec143a49fbd5ebc10183, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -39.05534
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228086283381663224, guid: 3e8b8b0efe4eec143a49fbd5ebc10183, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228086283381663224, guid: 3e8b8b0efe4eec143a49fbd5ebc10183, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228086283381663224, guid: 3e8b8b0efe4eec143a49fbd5ebc10183, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228086283381663224, guid: 3e8b8b0efe4eec143a49fbd5ebc10183, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228086283381663224, guid: 3e8b8b0efe4eec143a49fbd5ebc10183, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228086283381663224, guid: 3e8b8b0efe4eec143a49fbd5ebc10183, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228086283381663224, guid: 3e8b8b0efe4eec143a49fbd5ebc10183, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228086283381663224, guid: 3e8b8b0efe4eec143a49fbd5ebc10183, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392740984497030981, guid: 3e8b8b0efe4eec143a49fbd5ebc10183, type: 3}
+      propertyPath: m_Name
+      value: WindManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3e8b8b0efe4eec143a49fbd5ebc10183, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -6961,5 +6595,5 @@ SceneRoots:
   - {fileID: 514605764}
   - {fileID: 88355303}
   - {fileID: 977076946}
-  - {fileID: 1876318529}
-  - {fileID: 1985775231}
+  - {fileID: 5084742917653489201}
+  - {fileID: 7256275203255361710}

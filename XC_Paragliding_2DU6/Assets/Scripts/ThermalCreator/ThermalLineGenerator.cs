@@ -52,6 +52,7 @@ public class VerticalLine : MonoBehaviour
         transitionValue = useSinWave ? 0f : 1f;
         polyCollider = gameObject.GetComponent<PolygonCollider2D>();
         polyCollider.isTrigger = true;
+
         // Гарантируем, что массив сил соответствует количеству зон
         if (zoneForcesX == null || zoneForcesX.Length != zoneCountX)
         {

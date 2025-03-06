@@ -78,11 +78,19 @@ public class ThermalPool : MonoBehaviour
         thermal.parentObject.position = spawnPosition;
         thermal.cloudBaseObject = cloudBase;
 
-        // ---- Генерация случайных параметров ----
+        // ---- Zone Y ----
         thermal.addLiftForce = thermalSettings.addLiftForce;
         thermal.minLiftForceY = thermalSettings.minLiftForceY;
         thermal.liftForceY = thermalSettings.liftForceY;
 
+        // ---- Zone X ----
+        if (thermalSettings.zoneForcesX != null && thermalSettings.zoneForcesX.Length != 0)
+        {
+            thermal.zoneCountX = thermalSettings.zoneCountX;
+            thermal.zoneForcesX = thermalSettings.zoneForcesX;
+        }
+
+        // ---- Генерация случайных параметров ----
         thermal.pointCount = Random.Range(thermalSettings.minPointCount, thermalSettings.maxPointCount);
         thermal.colliderThinkness = Random.Range(thermalSettings.thremalMinWidht, thermalSettings.thremalMaxWidht);
 
