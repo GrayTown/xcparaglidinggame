@@ -1,6 +1,10 @@
 # xcparaglidinggame
 XC Paragliding Game.
 ------------------------
+My mission is to give you the feeling of travel that paragliding can give you. Landscapes change below, and small towns float beneath you. Just feel it.
+
+I need help from artists. Or donations to pay for drawings and arts.
+
 This project is my first attempt to work on a remaster of a wonderful game, the paraglider buddy. Completely free and with respect to the creator of the original.
 Author of original game Cristof.A
 <br>
