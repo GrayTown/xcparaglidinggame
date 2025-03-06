@@ -17,6 +17,13 @@ Tasks of this realisation:
 1. Remaster origin game (graphics)
 2. Add varios of platform, such as PC, Xbox and other
 3. May be add various of paraplans (like Ozone, Gin, and other)
+
+New
+![newview1](https://github.com/user-attachments/assets/f33b18f9-f899-42ba-8041-305166c8cf3e)
+
+![newview2](https://github.com/user-attachments/assets/b50edc74-fdb8-4123-9b94-804e16ab8f5c)
+
+Old
    
 ![screen-4](https://github.com/user-attachments/assets/50aa01e5-3617-4932-ab01-0100307bab64)
 
