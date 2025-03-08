@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Hills-PNG-Isolated-Pic_0: 9092891727365346274
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

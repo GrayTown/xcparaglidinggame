@@ -46,6 +46,12 @@ public class Paraglider : MonoBehaviour
         _currentHorizontalSpeed = _horizontalSpeed;
     }
 
+    void FixedUpdate()
+    {
+        FlyForward();
+        _currentAGL = GetAGL();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -55,46 +61,18 @@ public class Paraglider : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
-        FlyForward();
-        _currentAGL = GetAGL();
-    }
-
     public void FlyForward()
     {
         Vector2 velocity = Vector2.zero;
         if (!_currentDirection)
         {
-            // летим вправо ----->
-            if (_currentHorizontalSpeed >= 0)
-            {
-                // ветер вправо ----->
-                velocity.x = _horizontalSpeed + _currentHorizontalSpeed;
-                resultHorizontalSpeed = velocity.x;
-            }
-            else 
-            {
-                // ветер влево <-----
-                velocity.x = _horizontalSpeed + _currentHorizontalSpeed;
-                resultHorizontalSpeed = velocity.x;
-            }
+            velocity.x = _horizontalSpeed + _currentHorizontalSpeed;
+            resultHorizontalSpeed = velocity.x;
         }
         else
         {
-            // летим влево <-----
-            if (_currentHorizontalSpeed >= 0)
-            {
-                // ветер вправо ----->
-                velocity.x = - _horizontalSpeed + _currentHorizontalSpeed;
-                resultHorizontalSpeed = velocity.x;
-            }
-            else
-            {
-                // ветер влево <-----
-                velocity.x = - _horizontalSpeed + _currentHorizontalSpeed;
-                resultHorizontalSpeed = velocity.x;
-            }
+            velocity.x = -_horizontalSpeed + _currentHorizontalSpeed;
+            resultHorizontalSpeed = velocity.x;
         }
 
         if (_currentVerticalSpeed > -1 && _currentVerticalSpeed <= 0)
@@ -111,29 +89,6 @@ public class Paraglider : MonoBehaviour
             velocity.y = Mathf.Lerp(velocity.y, _currentVerticalSpeed * 10, Time.deltaTime * _smoothDeltaSpeed);
             _rb.linearVelocity = velocity;
         }
-    }
-
-    public void ProcessInput(PlayerInput input)
-    {
-        Vector2 moveInput = input.actions["Move"].ReadValue<Vector2>(); // Читаем оси ввода
-
-        if (moveInput.x < 0 && !_currentDirection)
-        {
-            _currentDirection = true; // Влево
-            FlipSprite();
-        }
-        else if (moveInput.x > 0 && _currentDirection)
-        {
-            _currentDirection = false; // Вправо
-            FlipSprite();
-        }
-    }
-
-    private void FlipSprite()
-    {
-        Vector3 scale = transform.localScale;
-        scale.x *= -1; // Инвертируем масштаб по X
-        transform.localScale = scale;
     }
 
     public float GetAGL()
@@ -163,5 +118,28 @@ public class Paraglider : MonoBehaviour
         }
 
         return (terrainY == float.MinValue) ? float.MaxValue : paragliderY - terrainY;
+    }
+
+    public void ProcessInput(PlayerInput input)
+    {
+        Vector2 moveInput = input.actions["Move"].ReadValue<Vector2>(); // Читаем оси ввода
+
+        if (moveInput.x < 0 && !_currentDirection)
+        {
+            _currentDirection = true; // Влево
+            FlipSprite();
+        }
+        else if (moveInput.x > 0 && _currentDirection)
+        {
+            _currentDirection = false; // Вправо
+            FlipSprite();
+        }
+    }
+
+    private void FlipSprite()
+    {
+        Vector3 scale = transform.localScale;
+        scale.x *= -1; // Инвертируем масштаб по X
+        transform.localScale = scale;
     }
 }

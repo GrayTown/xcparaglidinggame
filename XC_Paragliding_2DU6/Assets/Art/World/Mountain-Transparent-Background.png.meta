@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Mountain-Transparent-Background_0: 5018930679215772860
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
