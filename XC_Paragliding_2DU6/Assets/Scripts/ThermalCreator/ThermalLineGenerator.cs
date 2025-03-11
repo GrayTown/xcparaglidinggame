@@ -218,29 +218,32 @@ public class VerticalLine : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<Paraglider>(out Paraglider paraglider))
+        IFlightEntity entity = other.GetComponent<IFlightEntity>();
+        if (entity != null)
         {
             float liftForce = CalculateLiftForce(other.transform.position);
             currentLiftForce = liftForce;
-            paraglider._currentVerticalSpeed = liftForce;
+            entity.CurrentVerticalSpeed = liftForce;
         }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.TryGetComponent<Paraglider>(out Paraglider paraglider))
+        IFlightEntity entity = other.GetComponent<IFlightEntity>();
+        if (entity != null)
         {
             float liftForce = CalculateLiftForce(other.transform.position);
             currentLiftForce = liftForce;
-            paraglider._currentVerticalSpeed = liftForce;
+            entity.CurrentVerticalSpeed = liftForce;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent<Paraglider>(out Paraglider paraglider))
+        IFlightEntity entity = other.GetComponent<IFlightEntity>();
+        if (entity != null)
         {
-            paraglider._currentVerticalSpeed = 0;
+            entity.CurrentVerticalSpeed = 0;
         }
     }
 

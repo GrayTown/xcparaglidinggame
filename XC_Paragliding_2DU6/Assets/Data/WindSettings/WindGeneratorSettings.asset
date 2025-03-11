@@ -19,7 +19,7 @@ MonoBehaviour:
   - 300
   - 490
   windSpeed: 1
-  minWindSpeed: -8
-  maxWindSpeed: 8
+  minWindSpeed: -3
+  maxWindSpeed: 3
   windChangeSpeed: 0.3
   windUpdateInterval: 30

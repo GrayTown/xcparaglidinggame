@@ -98,29 +98,31 @@ public class WindGenerator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<Paraglider>(out Paraglider paraglider))
+        IFlightEntity entity = other.GetComponent<IFlightEntity>();
+        if (entity != null)
         {
-            float windSpeed = GetWindSpeedAtHeight(paraglider.transform.position.y);
-            paraglider._currentHorizontalSpeed = windSpeed;
-            Debug.Log("Вошел в другую зону ветра.-----------------------------------------");
+            float windSpeed = GetWindSpeedAtHeight(entity.EntityRB2D.transform.position.y);
+            entity.CurrentHorizontalSpeed = windSpeed;
         }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.TryGetComponent<Paraglider>(out Paraglider paraglider))
+        IFlightEntity entity = other.GetComponent<IFlightEntity>();
+        if (entity != null)
         {
-            float windSpeed = GetWindSpeedAtHeight(paraglider.transform.position.y);
-            paraglider._currentHorizontalSpeed = windSpeed;
+            float windSpeed = GetWindSpeedAtHeight(entity.EntityRB2D.transform.position.y);
+            entity.CurrentHorizontalSpeed = windSpeed;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent<Paraglider>(out Paraglider paraglider))
+        IFlightEntity entity = other.GetComponent<IFlightEntity>();
+        if (entity != null)
         {
-            paraglider._currentHorizontalSpeed = 0f;
-            Debug.Log("Вышел из старой зоны ветра.==========================================");
+            float windSpeed = GetWindSpeedAtHeight(entity.EntityRB2D.transform.position.y);
+            entity.CurrentHorizontalSpeed = 0;
         }
     }
 
@@ -129,32 +131,13 @@ public class WindGenerator : MonoBehaviour
     {
         Gizmos.color = Color.magenta; // Цвет точки
         Gizmos.DrawSphere(transform.position, gizmosPointSize); // Радиус 0.5 для наглядности
-       
-        ////for wind gizmos
-
-        //var leftUpCorner = new Vector3(levelBounds.GetPath(0).ElementAt(0).x, levelBounds.GetPath(0).ElementAt(0).y, 0);
-        //var rightUpCorner = new Vector3(levelBounds.GetPath(0).ElementAt(1).x, levelBounds.GetPath(0).ElementAt(1).y, 0);
-        //var rightDownCorner = new Vector3(levelBounds.GetPath(0).ElementAt(2).x, levelBounds.GetPath(0).ElementAt(2).y, 0);
-        //var leftDownCorner = new Vector3(levelBounds.GetPath(0).ElementAt(3).x, levelBounds.GetPath(0).ElementAt(3).y, 0);
-
-        //Gizmos.color = Color.blue; // Цвет точки
-        //Gizmos.DrawLine(leftUpCorner, rightUpCorner);
-        //Gizmos.DrawLine(rightUpCorner, rightDownCorner);
-        //Gizmos.DrawLine(rightDownCorner, leftDownCorner);
-        //Gizmos.DrawLine(leftDownCorner, leftUpCorner);
 
         for (int i = 0; i < settings.windZonesHeight.Length; i++) 
         {
             var leftUpCorner2 = new Vector3(levelBounds.GetPath(0).ElementAt(0).x, settings.windZonesHeight[i], 0);
             var rightUpCorner2 = new Vector3(levelBounds.GetPath(0).ElementAt(1).x, settings.windZonesHeight[i], 0);
-            //var rightDownCorner2 = new Vector3(levelBounds.GetPath(0).ElementAt(2).x, levelBounds.GetPath(0).ElementAt(2).y + windZonesHeight[i], 0);
-            //var leftDownCorner2 = new Vector3(levelBounds.GetPath(0).ElementAt(3).x, levelBounds.GetPath(0).ElementAt(3).y + windZonesHeight[i], 0);
-
             Gizmos.color = Color.blue; // Цвет точки
             Gizmos.DrawLine(leftUpCorner2, rightUpCorner2);
-            //Gizmos.DrawLine(rightUpCorner2, rightDownCorner2);
-            //Gizmos.DrawLine(rightDownCorner2, leftDownCorner2);
-            //Gizmos.DrawLine(leftDownCorner2, leftUpCorner2);
         }
 
 
