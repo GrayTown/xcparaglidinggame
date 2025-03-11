@@ -16,7 +16,6 @@ public class ParagliderComputer : MonoBehaviour
             .Select(p => terrainCollider.transform.TransformPoint(p))
             .OrderBy(p => Mathf.Abs(p.x - paragliderX))
             .FirstOrDefault();
-
-        return paragliderY - closestPoint.y;
+        return Mathf.RoundToInt(paragliderY - closestPoint.y)*10f;
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IFlightEntity
 {
-    public float CurrentHorizontalSpeed { get; set; }
-    public float CurrentVerticalSpeed { get; set; }
+    public void SetLiftForce(float newLiftForce);
+    public void SetWindForce(float newWindForce);
     public Rigidbody2D EntityRB2D { get; set; }
 }

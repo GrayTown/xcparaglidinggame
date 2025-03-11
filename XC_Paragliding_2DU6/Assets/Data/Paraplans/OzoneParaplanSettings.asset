@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c26c3389d910744b24f53a868c2c90, type: 3}
   m_Name: OzoneParaplanSettings
   m_EditorClassIdentifier: 
-  VerticalSpeed: -1
+  VerticalSpeed: -2
   HorizontalSpeed: 10
-  SmoothDeltaSpeed: 1
   CurrentDirection: 0
-  ModifierVerticalSpeed: 10

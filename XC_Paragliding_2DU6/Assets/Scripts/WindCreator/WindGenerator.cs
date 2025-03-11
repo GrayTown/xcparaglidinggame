@@ -102,7 +102,7 @@ public class WindGenerator : MonoBehaviour
         if (entity != null)
         {
             float windSpeed = GetWindSpeedAtHeight(entity.EntityRB2D.transform.position.y);
-            entity.CurrentHorizontalSpeed = windSpeed;
+            entity.SetWindForce(windSpeed);
         }
     }
 
@@ -112,7 +112,7 @@ public class WindGenerator : MonoBehaviour
         if (entity != null)
         {
             float windSpeed = GetWindSpeedAtHeight(entity.EntityRB2D.transform.position.y);
-            entity.CurrentHorizontalSpeed = windSpeed;
+            entity.SetWindForce(windSpeed);
         }
     }
 
@@ -122,7 +122,7 @@ public class WindGenerator : MonoBehaviour
         if (entity != null)
         {
             float windSpeed = GetWindSpeedAtHeight(entity.EntityRB2D.transform.position.y);
-            entity.CurrentHorizontalSpeed = 0;
+            entity.SetWindForce(0);
         }
     }
 

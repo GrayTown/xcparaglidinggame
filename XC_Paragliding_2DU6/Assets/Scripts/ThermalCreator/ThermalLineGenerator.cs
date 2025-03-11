@@ -223,7 +223,7 @@ public class VerticalLine : MonoBehaviour
         {
             float liftForce = CalculateLiftForce(other.transform.position);
             currentLiftForce = liftForce;
-            entity.CurrentVerticalSpeed = liftForce;
+            entity.SetLiftForce(liftForce);
         }
     }
 
@@ -234,7 +234,7 @@ public class VerticalLine : MonoBehaviour
         {
             float liftForce = CalculateLiftForce(other.transform.position);
             currentLiftForce = liftForce;
-            entity.CurrentVerticalSpeed = liftForce;
+            entity.SetLiftForce(liftForce);
         }
     }
 
@@ -243,7 +243,7 @@ public class VerticalLine : MonoBehaviour
         IFlightEntity entity = other.GetComponent<IFlightEntity>();
         if (entity != null)
         {
-            entity.CurrentVerticalSpeed = 0;
+            entity.SetLiftForce(0);
         }
     }
 

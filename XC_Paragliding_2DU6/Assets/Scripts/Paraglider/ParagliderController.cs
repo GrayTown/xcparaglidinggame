@@ -5,26 +5,39 @@ public class ParagliderController : MonoBehaviour, IFlightEntity
 {
 
     public ParaplanSettings paraplanSettings;
-
     public Rigidbody2D EntityRB2D { get; set; }
-    public float CurrentHorizontalSpeed { get => _horizontalSpeed; set => _horizontalSpeed = value; }
-    public float CurrentVerticalSpeed { get => _verticalSpeed; set => _verticalSpeed = value; }
 
-    private float _horizontalSpeed;
-    private float _verticalSpeed;
-    private float _modifierVerticalSpeed = 10f;
-    private float _smoothDeltaSpeed;
-    private bool _currentDirection; // false - вправо, true - влево
+    private ParagliderComputer paragliderComputer;
+
+    private float _horizontalSpeed = 10f;
+    private float _verticalSpeed = -1f;
+    private bool _currentDirection = false; // false - вправо, true - влево
+    private float _liftForce = 0f;
+    private float _windForce = 0f;
+    private float _forcesModifier = 2f;
 
     private void Awake()
     {
         EntityRB2D = GetComponent<Rigidbody2D>();
+        paragliderComputer = GetComponent<ParagliderComputer>();
+        EntityRB2D.gravityScale = 1f;
         ApplySettings();
     }
 
     private void FixedUpdate()
     {
+        // Применяем подъем в термическом потоке (если есть)
+        ApplyLift();
+
+        // Применяем ускорение/замедление по оси X (если есть)
+        ApplyWind();
+
         Move();
+    }
+
+    private void Update()
+    {
+        EventManager.Instance.Publish("AGL", paragliderComputer.GetAGL().ToString());
     }
 
     private void ApplySettings()
@@ -33,40 +46,62 @@ public class ParagliderController : MonoBehaviour, IFlightEntity
 
         _verticalSpeed = paraplanSettings.VerticalSpeed;
         _horizontalSpeed = paraplanSettings.HorizontalSpeed;
-        _smoothDeltaSpeed = paraplanSettings.SmoothDeltaSpeed;
         _currentDirection = paraplanSettings.CurrentDirection;
-        _modifierVerticalSpeed = paraplanSettings.ModifierVerticalSpeed;
-
-        CurrentVerticalSpeed = _verticalSpeed;
-        CurrentHorizontalSpeed = _horizontalSpeed;
     }
 
-    public void Move()
+    private void ApplyLift()
     {
-        Vector2 velocity = Vector2.zero;
+        _verticalSpeed = paraplanSettings.VerticalSpeed;
+
+        if (_liftForce != 0)
+        {
+            _verticalSpeed += _liftForce;
+        }
+        if (_liftForce == 0) 
+        {
+            _verticalSpeed = paraplanSettings.VerticalSpeed;
+        }
+    }
+
+    private void ApplyWind()
+    {
+        _horizontalSpeed = paraplanSettings.HorizontalSpeed;
+
+        if (_windForce != 0)
+        {
+
+            _horizontalSpeed += _windForce;
+        }
+        else 
+        {
+            _horizontalSpeed = paraplanSettings.HorizontalSpeed;
+        }
+    }
+
+    private void Move()
+    {
+        // Обновляем позицию
         if (!_currentDirection)
         {
-            velocity.x = _horizontalSpeed + CurrentHorizontalSpeed;
+            EntityRB2D.linearVelocityX = _horizontalSpeed * _forcesModifier;
         }
-        else
+        else 
         {
-            velocity.x = -_horizontalSpeed + CurrentHorizontalSpeed;
+            EntityRB2D.linearVelocityX = -_horizontalSpeed * _forcesModifier;
         }
+        EntityRB2D.linearVelocityY = _verticalSpeed * 2f;
+    }
 
-        if (CurrentVerticalSpeed > -1 && CurrentVerticalSpeed <= 0)
-        {
-            CurrentVerticalSpeed = _verticalSpeed;
-        }
-        if (CurrentVerticalSpeed <= -1)
-        {
-            velocity.y = Mathf.Lerp(velocity.y, CurrentVerticalSpeed * _verticalSpeed * -_modifierVerticalSpeed, Time.deltaTime * _smoothDeltaSpeed);
-            EntityRB2D.linearVelocity = velocity;
-        }
-        else
-        {
-            velocity.y = Mathf.Lerp(velocity.y, CurrentVerticalSpeed * _modifierVerticalSpeed, Time.deltaTime * _smoothDeltaSpeed);
-            EntityRB2D.linearVelocity = velocity;
-        }
+    // Метод для изменения силы подъема (термический поток)
+    public void SetLiftForce(float newLiftForce)
+    {
+        _liftForce = newLiftForce;
+    }
+
+    // Метод для изменения силы ветра (ускорение/замедление)
+    public void SetWindForce(float newWindForce)
+    {
+        _windForce = newWindForce;
     }
 
     public void SetDirection(bool isLeft)
