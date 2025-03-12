@@ -15,7 +15,7 @@ MonoBehaviour:
   cloudSize: {x: 1.1, y: 1.5}
   deltaCloudHighY: 20
   addLiftForce: 2
-  liftForceY: 6
+  liftForceY: 4
   minLiftForceY: 1.09
   zoneCountX: 16
   zoneForcesX:

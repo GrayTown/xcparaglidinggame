@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -6,8 +7,8 @@ public class ParagliderController : MonoBehaviour, IFlightEntity
 
     public ParaplanSettings paraplanSettings;
     public Rigidbody2D EntityRB2D { get; set; }
-
-    private ParagliderComputer paragliderComputer;
+    
+    private PolygonCollider2D terrainCollider;
 
     private float _horizontalSpeed = 10f;
     private float _verticalSpeed = -1f;
@@ -19,7 +20,7 @@ public class ParagliderController : MonoBehaviour, IFlightEntity
     private void Awake()
     {
         EntityRB2D = GetComponent<Rigidbody2D>();
-        paragliderComputer = GetComponent<ParagliderComputer>();
+        terrainCollider = GameObject.FindGameObjectWithTag("GroundLanding").GetComponent<PolygonCollider2D>();
         EntityRB2D.gravityScale = 1f;
         ApplySettings();
     }
@@ -37,7 +38,10 @@ public class ParagliderController : MonoBehaviour, IFlightEntity
 
     private void Update()
     {
-        EventManager.Instance.Publish("AGL", paragliderComputer.GetAGL().ToString());
+        EventManager.Instance.Publish("AGL", Mathf.RoundToInt(GetAGL()).ToString());
+        EventManager.Instance.Publish("Speed", Mathf.RoundToInt(_horizontalSpeed/1000 * 3600).ToString());
+        EventManager.Instance.Publish("WindSpeed", Mathf.RoundToInt(_windForce).ToString());
+        EventManager.Instance.Publish("ThermalLift", Mathf.RoundToInt(_verticalSpeed).ToString());
     }
 
     private void ApplySettings()
@@ -116,6 +120,20 @@ public class ParagliderController : MonoBehaviour, IFlightEntity
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    public float GetAGL()
+    {
+        if (terrainCollider == null) return float.MaxValue;
+
+        float paragliderX = transform.position.x;
+        float paragliderY = transform.position.y;
+
+        var closestPoint = terrainCollider.points
+            .Select(p => terrainCollider.transform.TransformPoint(p))
+            .OrderBy(p => Mathf.Abs(p.x - paragliderX))
+            .FirstOrDefault();
+        return (paragliderY - closestPoint.y) * 10f;
     }
 }
 

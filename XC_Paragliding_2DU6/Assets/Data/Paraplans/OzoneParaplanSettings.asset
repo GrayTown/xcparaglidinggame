@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: OzoneParaplanSettings
   m_EditorClassIdentifier: 
   VerticalSpeed: -2
-  HorizontalSpeed: 10
+  HorizontalSpeed: 11
   CurrentDirection: 0
