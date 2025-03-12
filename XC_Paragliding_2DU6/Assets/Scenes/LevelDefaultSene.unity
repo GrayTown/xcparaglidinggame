@@ -5575,7 +5575,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 423.39996, y: -71.71}
+  m_AnchoredPosition: {x: 423.39996, y: -71.71002}
   m_SizeDelta: {x: 846.8, y: 143.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1770426772
@@ -7178,6 +7178,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e4bf9ac509c1645ba27f2037270d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _climbTime: 2
+  _isTurning: 0
+  MaxTurnTime: 1
+  _currentTurnSpeed: 3
+  TurnSmoothness: 5
+  InputDelay: 0.01
 --- !u!114 &2103175509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7191,7 +7197,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paraplanSettings: {fileID: 11400000, guid: 6afea854f763ce94c8d9f9d0f38fd827, type: 2}
-  terrainCollider: {fileID: 0}
 --- !u!1 &2113251653
 GameObject:
   m_ObjectHideFlags: 0
