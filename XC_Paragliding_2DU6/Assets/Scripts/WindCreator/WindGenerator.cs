@@ -60,10 +60,34 @@ public class WindGenerator : MonoBehaviour
 
     private void GenerateInitialWind()
     {
+        // Инициализируем предыдущее значение как положительное
+        float previousValue = 1f;
+
         for (int i = 0; i < windSpeeds.Length; i++)
         {
+            // Генерируем новое случайное значение
             windSpeeds[i] = Random.Range(settings.minWindSpeed, settings.maxWindSpeed);
-            targetWindSpeeds[i] = windSpeeds[i];
+
+            // Проверяем условие: если текущее и предыдущее значения положительные
+            if ((windSpeeds[i] > 0 && previousValue > 0))
+            {
+                // Меняем знак на отрицательный
+                targetWindSpeeds[i] = -windSpeeds[i];
+            }
+            else
+            {
+                if ((windSpeeds[i] < 0 && previousValue < 0))
+                {
+                    // Меняем знак на отрицательный
+                    targetWindSpeeds[i] = windSpeeds[i];
+                }
+                else
+                {
+                    targetWindSpeeds[i] = windSpeeds[i];
+                }
+            }
+            // Сохраняем текущее значение для следующей итерации
+            previousValue = windSpeeds[i];
         }
     }
 
