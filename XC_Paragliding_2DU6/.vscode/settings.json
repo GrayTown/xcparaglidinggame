@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "XC_Paragliding_2DU6.sln"
+    "dotnet.defaultSolution": "XC_Paragliding_2DU6.sln",
+    "dotnet.preferCSharpExtension": true
 }
