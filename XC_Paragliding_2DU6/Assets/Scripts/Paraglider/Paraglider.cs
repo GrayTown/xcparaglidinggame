@@ -27,6 +27,8 @@ public class Paraglider : MonoBehaviour
     private bool _currentDirection = false;
 
     public float resultHorizontalSpeed = 0;
+    // Переменная для хранения пройденного расстояния в метрах
+    public float _distanceTraveled = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +52,8 @@ public class Paraglider : MonoBehaviour
     {
         FlyForward();
         _currentAGL = GetAGL();
+        // Обновляем пройденное расстояние
+        _distanceTraveled += Mathf.Abs(resultHorizontalSpeed) * Time.fixedDeltaTime;
     }
 
     // Update is called once per frame
@@ -141,5 +145,11 @@ public class Paraglider : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1; // Инвертируем масштаб по X
         transform.localScale = scale;
+    }
+
+    // Метод для получения пройденного расстояния в километрах
+    public float GetDistanceTraveledInKilometers()
+    {
+        return _distanceTraveled / 1000f; // Переводим метры в километры
     }
 }
