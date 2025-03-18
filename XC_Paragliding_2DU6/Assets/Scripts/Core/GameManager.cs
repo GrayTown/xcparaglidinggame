@@ -7,6 +7,14 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) // Пример: закрыть приложение по нажатию клавиши Esc
+        {
+            Application.Quit();
+        }
+    }
+
     public void StartGame()
     {
 
@@ -22,4 +30,5 @@ public class GameManager : MonoBehaviour
     {
         EndGame(); // Отправляем событие перед выходом
     }
+
 }
