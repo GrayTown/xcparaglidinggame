@@ -7322,7 +7322,6 @@ MonoBehaviour:
   paraplanSettings: {fileID: 11400000, guid: 6afea854f763ce94c8d9f9d0f38fd827, type: 2}
   variometerAudio: {fileID: 8387976464617100283}
   bzzzSound: {fileID: 8300000, guid: 6ad264c95d0c72a4fbb6d5e1e1eb611f, type: 3}
-  backgroundAudio: {fileID: 0}
 --- !u!1 &2113251653
 GameObject:
   m_ObjectHideFlags: 0
@@ -9072,7 +9071,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 400.6302
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
