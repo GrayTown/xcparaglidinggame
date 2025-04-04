@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class ThermalPoint : MonoBehaviour
 {
-    [SerializeField] private float gizmosPointSize = 5f;
+    [SerializeField] private float _gizmosPointSize = 5f;
 
-    private float timeSinceLastCheck = 0f; // Время, прошедшее с последней попытки
-    private float retryTime; // Случайное время ожидания для этой точки
+    private float _timeSinceLastCheck = 0f; // Время, прошедшее с последней попытки
+    private float _retryTime; // Случайное время ожидания для этой точки
 
     private void Start()
     {
         // Генерируем случайное время ожидания для этой точки
-        retryTime = Random.Range(ThermalPool.Instance.thermalSettings.minRetryTime,
+        _retryTime = Random.Range(ThermalPool.Instance.thermalSettings.minRetryTime,
                                  ThermalPool.Instance.thermalSettings.maxRetryTime);
     }
 
     public void CheckAndSpawnThermal()
     {
-        timeSinceLastCheck += Time.deltaTime; // Увеличиваем время с последней проверки
+        _timeSinceLastCheck += Time.deltaTime; // Увеличиваем время с последней проверки
 
-        if (timeSinceLastCheck >= retryTime)
+        if (_timeSinceLastCheck >= _retryTime)
         {
             // Если время ожидания прошло, проверяем шанс создания термика
             if (Random.value <= ThermalPool.Instance.thermalSettings.thermalSpawnChance)
@@ -28,9 +28,9 @@ public class ThermalPoint : MonoBehaviour
             }
 
             // Сброс времени ожидания
-            timeSinceLastCheck = 0f;
+            _timeSinceLastCheck = 0f;
             // Генерируем новый случайный интервал ожидания
-            retryTime = Random.Range(ThermalPool.Instance.thermalSettings.minRetryTime,
+            _retryTime = Random.Range(ThermalPool.Instance.thermalSettings.minRetryTime,
                                  ThermalPool.Instance.thermalSettings.maxRetryTime);
         }
     }
@@ -39,7 +39,7 @@ public class ThermalPoint : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow; // Цвет точки
-        Gizmos.DrawSphere(transform.position, gizmosPointSize); // Радиус 0.5 для наглядности
+        Gizmos.DrawSphere(transform.position, _gizmosPointSize); // Радиус 0.5 для наглядности
     }
 }
 

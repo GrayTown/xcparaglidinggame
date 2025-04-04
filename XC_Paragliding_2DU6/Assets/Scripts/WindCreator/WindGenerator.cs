@@ -6,28 +6,28 @@ public class WindGenerator : MonoBehaviour
     [Header("Настройки ветров")]
     public WindGeneratorSettings settings;
 
-    [SerializeField] private PolygonCollider2D levelBounds;
-    [SerializeField] private float gizmosPointSize = 5f;
+    [SerializeField] private PolygonCollider2D _levelBounds;
+    [SerializeField] private float _gizmosPointSize = 5f;
 
-    private float[] windSpeeds;
-    private float[] targetWindSpeeds;
-    private float windTimer;
+    private float[] _windSpeeds;
+    private float[] _targetWindSpeeds;
+    private float _windTimer;
 
     private void Start()
     {
         WindZoneLayerSetup();
-        windSpeeds = new float[settings.windZonesHeight.Length];
-        targetWindSpeeds = new float[settings.windZonesHeight.Length];
+        _windSpeeds = new float[settings.windZonesHeight.Length];
+        _targetWindSpeeds = new float[settings.windZonesHeight.Length];
         GenerateInitialWind();
     }
 
     private void Update()
     {
-        windTimer += Time.deltaTime;
-        if (windTimer >= settings.windUpdateInterval)
+        _windTimer += Time.deltaTime;
+        if (_windTimer >= settings.windUpdateInterval)
         {
             UpdateTargetWindSpeeds();
-            windTimer = 0f;
+            _windTimer = 0f;
         }
         SmoothWindChange();
     }
@@ -35,7 +35,7 @@ public class WindGenerator : MonoBehaviour
     private void WindZoneLayerSetup()
     {
         // Получаем все точки из levelBounds
-        var path = levelBounds.GetPath(0);
+        var path = _levelBounds.GetPath(0);
         float minX = path.Min(p => p.x);
         float maxX = path.Max(p => p.x);
 
@@ -63,47 +63,47 @@ public class WindGenerator : MonoBehaviour
         // Инициализируем предыдущее значение как положительное
         float previousValue = 1f;
 
-        for (int i = 0; i < windSpeeds.Length; i++)
+        for (int i = 0; i < _windSpeeds.Length; i++)
         {
             // Генерируем новое случайное значение
-            windSpeeds[i] = Random.Range(settings.minWindSpeed, settings.maxWindSpeed);
+            _windSpeeds[i] = Random.Range(settings.minWindSpeed, settings.maxWindSpeed);
 
             // Проверяем условие: если текущее и предыдущее значения положительные
-            if ((windSpeeds[i] > 0 && previousValue > 0))
+            if (_windSpeeds[i] > 0 && previousValue > 0)
             {
                 // Меняем знак на отрицательный
-                targetWindSpeeds[i] = -windSpeeds[i];
+                _targetWindSpeeds[i] = -_windSpeeds[i];
             }
             else
             {
-                if ((windSpeeds[i] < 0 && previousValue < 0))
+                if (_windSpeeds[i] < 0 && previousValue < 0)
                 {
                     // Меняем знак на отрицательный
-                    targetWindSpeeds[i] = windSpeeds[i];
+                    _targetWindSpeeds[i] = _windSpeeds[i];
                 }
                 else
                 {
-                    targetWindSpeeds[i] = windSpeeds[i];
+                    _targetWindSpeeds[i] = _windSpeeds[i];
                 }
             }
             // Сохраняем текущее значение для следующей итерации
-            previousValue = windSpeeds[i];
+            previousValue = _windSpeeds[i];
         }
     }
 
     private void UpdateTargetWindSpeeds()
     {
-        for (int i = 0; i < targetWindSpeeds.Length; i++)
+        for (int i = 0; i < _targetWindSpeeds.Length; i++)
         {
-            targetWindSpeeds[i] = Random.Range(settings.minWindSpeed, settings.maxWindSpeed);
+            _targetWindSpeeds[i] = Random.Range(settings.minWindSpeed, settings.maxWindSpeed);
         }
     }
 
     private void SmoothWindChange()
     {
-        for (int i = 0; i < windSpeeds.Length; i++)
+        for (int i = 0; i < _windSpeeds.Length; i++)
         {
-            windSpeeds[i] = Mathf.MoveTowards(windSpeeds[i], targetWindSpeeds[i], settings.windChangeSpeed * Time.deltaTime);
+            _windSpeeds[i] = Mathf.MoveTowards(_windSpeeds[i], _targetWindSpeeds[i], settings.windChangeSpeed * Time.deltaTime);
         }
     }
 
@@ -114,10 +114,10 @@ public class WindGenerator : MonoBehaviour
             if (height >= settings.windZonesHeight[i] && height < settings.windZonesHeight[i + 1])
             {
                 float t = Mathf.InverseLerp(settings.windZonesHeight[i], settings.windZonesHeight[i + 1], height);
-                return Mathf.Lerp(windSpeeds[i], windSpeeds[i + 1], t);
+                return Mathf.Lerp(_windSpeeds[i], _windSpeeds[i + 1], t);
             }
         }
-        return windSpeeds[windSpeeds.Length - 1];
+        return _windSpeeds[_windSpeeds.Length - 1];
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -154,12 +154,12 @@ public class WindGenerator : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta; // Цвет точки
-        Gizmos.DrawSphere(transform.position, gizmosPointSize); // Радиус 0.5 для наглядности
+        Gizmos.DrawSphere(transform.position, _gizmosPointSize); // Радиус 0.5 для наглядности
 
         for (int i = 0; i < settings.windZonesHeight.Length; i++) 
         {
-            var leftUpCorner2 = new Vector3(levelBounds.GetPath(0).ElementAt(0).x, settings.windZonesHeight[i], 0);
-            var rightUpCorner2 = new Vector3(levelBounds.GetPath(0).ElementAt(1).x, settings.windZonesHeight[i], 0);
+            var leftUpCorner2 = new Vector3(_levelBounds.GetPath(0).ElementAt(0).x, settings.windZonesHeight[i], 0);
+            var rightUpCorner2 = new Vector3(_levelBounds.GetPath(0).ElementAt(1).x, settings.windZonesHeight[i], 0);
             Gizmos.color = Color.blue; // Цвет точки
             Gizmos.DrawLine(leftUpCorner2, rightUpCorner2);
         }

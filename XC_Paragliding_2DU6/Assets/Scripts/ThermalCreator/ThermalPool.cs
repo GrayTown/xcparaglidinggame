@@ -14,9 +14,9 @@ public class ThermalPool : MonoBehaviour
     [Header("Префаб облака")]
     public GameObject cloudPrefab;
 
-    private Queue<VerticalLine> thermalPool = new Queue<VerticalLine>();
-    private List<VerticalLine> activeThermals = new List<VerticalLine>(); // Список активных термиков
-    private Queue<GameObject> cloudPool = new Queue<GameObject>();
+    private Queue<VerticalLine> _thermalPool = new Queue<VerticalLine>();
+    private List<VerticalLine> _activeThermals = new List<VerticalLine>(); // Список активных термиков
+    private Queue<GameObject> _cloudPool = new Queue<GameObject>();
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class ThermalPool : MonoBehaviour
         }
 
         // Проверка на пересечение с уже существующими термиками
-        foreach (VerticalLine activeThermal in activeThermals)
+        foreach (VerticalLine activeThermal in _activeThermals)
         {
             float distance = Vector3.Distance(basePosition, activeThermal.transform.position);
             if (distance < thermalSettings.minDistanceBetweenThermals)
@@ -52,9 +52,9 @@ public class ThermalPool : MonoBehaviour
 
         VerticalLine thermal;
 
-        if (thermalPool.Count > 0)
+        if (_thermalPool.Count > 0)
         {
-            thermal = thermalPool.Dequeue();
+            thermal = _thermalPool.Dequeue();
         }
         else
         {
@@ -108,9 +108,9 @@ public class ThermalPool : MonoBehaviour
 
         // Получаем или создаем облако
         GameObject cloud;
-        if (cloudPool.Count > 0)
+        if (_cloudPool.Count > 0)
         {
-            cloud = cloudPool.Dequeue();
+            cloud = _cloudPool.Dequeue();
             cloud.transform.position = new Vector2(spawnPosition.x + thermal.angle * 2,cloudBase.position.y + thermal.colliderThinkness / 2 + thermalSettings.deltaCloudHighY * thermalSettings.cloudSize.y);
             cloud.transform.localScale = new Vector3(thermal.colliderThinkness * thermalSettings.cloudSize.x, thermal.colliderThinkness * thermalSettings.cloudSize.y, 0);
             cloud.SetActive(true);
@@ -135,7 +135,7 @@ public class ThermalPool : MonoBehaviour
         StartCoroutine(RemoveThermalAfterLifetime(thermal, cloud, thermal.thermalLifetime));
 
         // Добавляем термик в список активных термиков
-        activeThermals.Add(thermal);
+        _activeThermals.Add(thermal);
 
         return thermal;
     }
@@ -153,8 +153,8 @@ public class ThermalPool : MonoBehaviour
         thermal.elapsedTime = 0;
         thermal.thermalLifetime = 0;
         thermal.gameObject.SetActive(false);
-        activeThermals.Remove(thermal);
-        thermalPool.Enqueue(thermal);
-        cloudPool.Enqueue(cloud);
+        _activeThermals.Remove(thermal);
+        _thermalPool.Enqueue(thermal);
+        _cloudPool.Enqueue(cloud);
     }
 }

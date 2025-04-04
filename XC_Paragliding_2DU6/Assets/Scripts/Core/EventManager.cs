@@ -3,14 +3,15 @@ using System.Collections.Generic;
 
 public class EventManager
 {
-    private static EventManager instance;
+    private static EventManager _instance;
     private Dictionary<string, List<(Delegate handler, int priority, int order)>> eventDictionary = new();
     private List<(Delegate handler, int priority, int order)> globalListeners = new();
-    private int subscriptionOrder = 0;
+    
+    private int _subscriptionOrder = 0;
 
     private EventManager() { }
 
-    public static EventManager Instance => instance ??= new EventManager();
+    public static EventManager Instance => _instance ??= new EventManager();
 
     // Подписка на событие с параметром
     public void Subscribe<T>(string eventName, Action<T> listener, int priority = 0)
@@ -19,8 +20,8 @@ public class EventManager
         {
             eventDictionary[eventName] = new();
         }
-        subscriptionOrder++;
-        eventDictionary[eventName].Add((listener, priority, subscriptionOrder));
+        _subscriptionOrder++;
+        eventDictionary[eventName].Add((listener, priority, _subscriptionOrder));
         SortListeners(eventName);
     }
 
@@ -31,16 +32,16 @@ public class EventManager
         {
             eventDictionary[eventName] = new();
         }
-        subscriptionOrder++;
-        eventDictionary[eventName].Add((listener, priority, subscriptionOrder));
+        _subscriptionOrder++;
+        eventDictionary[eventName].Add((listener, priority, _subscriptionOrder));
         SortListeners(eventName);
     }
 
     // Подписка на все события
     public void SubscribeToAll(Action<string> listener, int priority = 0)
     {
-        subscriptionOrder++;
-        globalListeners.Add((listener, priority, subscriptionOrder));
+        _subscriptionOrder++;
+        globalListeners.Add((listener, priority, _subscriptionOrder));
         globalListeners.Sort((a, b) => b.priority.CompareTo(a.priority) != 0 ? b.priority.CompareTo(a.priority) : a.order.CompareTo(b.order));
     }
 

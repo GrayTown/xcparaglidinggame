@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ParallaxLayer", menuName = "XC/Parallax/Layer Data")]

@@ -9,7 +9,13 @@ public class ParagliderController : MonoBehaviour, IFlightEntity
     public ParaplanSettings paraplanSettings;
     public Rigidbody2D EntityRB2D { get; set; }
 
-    private PolygonCollider2D terrainCollider;
+    [SerializeField] private AudioSource _variometerAudio; // Ссылка на AudioSource
+    [SerializeField] private AudioClip _bzzzSound; // Второй звук (bzzz bzzz)
+
+    private PolygonCollider2D _terrainCollider;
+
+    private Coroutine _stopRoutine;
+    private Coroutine _bzzzRoutine;
 
     private float _horizontalSpeed = 10f;
     private float _verticalSpeed = -1f;
@@ -18,29 +24,27 @@ public class ParagliderController : MonoBehaviour, IFlightEntity
     private float _windForce = 0f;
     private float _forcesModifier = 2f;
 
-    [SerializeField] private AudioSource variometerAudio; // Ссылка на AudioSource
-    [SerializeField] private AudioClip bzzzSound; // Второй звук (bzzz bzzz)
+    private float _totalDistance = 0f;
+    private Vector2 _startPoint = new Vector2(0,0);
+    private Vector2 _currentPoint = new Vector2(0, 0);
 
-    private float lastLiftForce; // Предыдущее значение
-    private float updateThreshold = 0.5f; // Минимальное изменение для обновления
-    private float updateInterval = 1f; // Интервал обновлений (секунды)
+    private float _lastLiftForce; // Предыдущее значение
+    private float _updateThreshold = 0.5f; // Минимальное изменение для обновления
+    private float _updateInterval = 1f; // Интервал обновлений (секунды)
 
-    private float minLift = -7f; // Минимальное значение подъема
-    private float maxLift = 7f;  // Максимальное значение подъема
-    private float minPitch = 0.6f; // Минимальная тональность
-    private float maxPitch = 1.5f; // Максимальная тональность
-    private float minVolume = 1.0f; // Громкость при слабом подъеме
-    private float maxVolume = 1.0f; // Громкость при сильном подъеме
-    private bool isPlaying = false; // Флаг состояния звука
-    private Coroutine stopRoutine;
-    private Coroutine bzzzRoutine;
-    private bool shouldPlayBzzz = false;
-
+    private float _minLift = -7f; // Минимальное значение подъема
+    private float _maxLift = 7f;  // Максимальное значение подъема
+    private float _minPitch = 0.6f; // Минимальная тональность
+    private float _maxPitch = 1.5f; // Максимальная тональность
+    private float _minVolume = 1.0f; // Громкость при слабом подъеме
+    private float _maxVolume = 1.0f; // Громкость при сильном подъеме
+    private bool _isPlaying = false; // Флаг состояния звука
+    private bool _shouldPlayBzzz = false;
 
     private void Awake()
     {
         EntityRB2D = GetComponent<Rigidbody2D>();
-        terrainCollider = GameObject.FindGameObjectWithTag("GroundLanding").GetComponent<PolygonCollider2D>();
+        _terrainCollider = GameObject.FindGameObjectWithTag("GroundLanding").GetComponent<PolygonCollider2D>();
         EntityRB2D.gravityScale = 1f;
         ApplySettings();
     }
@@ -50,14 +54,18 @@ public class ParagliderController : MonoBehaviour, IFlightEntity
         // Если на старте подъём равен 0, сразу запускаем "bzzz"
         if (Mathf.Approximately(_liftForce, 0f))
         {
-            shouldPlayBzzz = true;
+            _shouldPlayBzzz = true;
             StartCoroutine(PlayBzzzSound());
         }
         StartCoroutine(UpdateSoundRoutine()); // Запускаем обновление раз в updateInterval
+        _startPoint = EntityRB2D.transform.position;
+        _currentPoint = _startPoint;
+        _totalDistance = Vector2.Distance(_currentPoint, _startPoint);
     }
 
     private void FixedUpdate()
     {
+        _totalDistance = Vector2.Distance(_startPoint, EntityRB2D.transform.position)/100;
         // Применяем подъем в термическом потоке (если есть)
         ApplyLift();
 
@@ -73,6 +81,7 @@ public class ParagliderController : MonoBehaviour, IFlightEntity
         EventManager.Instance.Publish("Speed", Mathf.RoundToInt(_horizontalSpeed / 1000 * 3600).ToString());
         EventManager.Instance.Publish("WindSpeed", Mathf.RoundToInt(_windForce).ToString());
         EventManager.Instance.Publish("ThermalLift", Mathf.RoundToInt(_verticalSpeed).ToString());
+        EventManager.Instance.Publish("TotalDistance", Mathf.RoundToInt(_totalDistance).ToString());
     }
 
     private void ApplySettings()
@@ -129,18 +138,18 @@ public class ParagliderController : MonoBehaviour, IFlightEntity
 
     public void SetLiftForce(float newLiftForce)
     {
-        if (Mathf.Abs(newLiftForce - lastLiftForce) < updateThreshold) return;
-        lastLiftForce = newLiftForce;
+        if (Mathf.Abs(newLiftForce - _lastLiftForce) < _updateThreshold) return;
+        _lastLiftForce = newLiftForce;
         _liftForce = newLiftForce;
 
         // Обновляем состояние для bzzz
         if (Mathf.Approximately(_liftForce, 0f))
         {
-            shouldPlayBzzz = true;
+            _shouldPlayBzzz = true;
         }
         else
         {
-            shouldPlayBzzz = false;
+            _shouldPlayBzzz = false;
         }
     }
 
@@ -172,13 +181,13 @@ public class ParagliderController : MonoBehaviour, IFlightEntity
 
     public float GetAGL()
     {
-        if (terrainCollider == null) return float.MaxValue;
+        if (_terrainCollider == null) return float.MaxValue;
 
         float paragliderX = transform.position.x;
         float paragliderY = transform.position.y;
 
-        var closestPoint = terrainCollider.points
-            .Select(p => terrainCollider.transform.TransformPoint(p))
+        var closestPoint = _terrainCollider.points
+            .Select(p => _terrainCollider.transform.TransformPoint(p))
             .OrderBy(p => Mathf.Abs(p.x - paragliderX))
             .FirstOrDefault();
         return (paragliderY - closestPoint.y) * 10f;
@@ -188,70 +197,70 @@ public class ParagliderController : MonoBehaviour, IFlightEntity
     {
         while (true)
         {
-            if (variometerAudio == null) yield break;
+            if (_variometerAudio == null) yield break;
 
             // Если подъём равен 0, проигрываем bzzz
-            if (shouldPlayBzzz)
+            if (_shouldPlayBzzz)
             {
-                if (isPlaying)
+                if (_isPlaying)
                 {
-                    if (stopRoutine == null) stopRoutine = StartCoroutine(FadeOutAndStop());
+                    if (_stopRoutine == null) _stopRoutine = StartCoroutine(FadeOutAndStop());
                 }
 
                 // Если bzzz не проигрывается, запускаем его
-                if (bzzzRoutine == null && bzzzSound != null)
+                if (_bzzzRoutine == null && _bzzzSound != null)
                 {
-                    bzzzRoutine = StartCoroutine(PlayBzzzSound());
+                    _bzzzRoutine = StartCoroutine(PlayBzzzSound());
                 }
             }
             else
             {
-                if (!isPlaying)
+                if (!_isPlaying)
                 {
-                    variometerAudio.Play();
-                    isPlaying = true;
-                    if (stopRoutine != null) StopCoroutine(stopRoutine);
-                    stopRoutine = null;
+                    _variometerAudio.Play();
+                    _isPlaying = true;
+                    if (_stopRoutine != null) StopCoroutine(_stopRoutine);
+                    _stopRoutine = null;
                 }
 
                 // Прекращаем проигрывание bzzz при наличии подъема
-                if (bzzzRoutine != null)
+                if (_bzzzRoutine != null)
                 {
-                    StopCoroutine(bzzzRoutine);
-                    bzzzRoutine = null;
+                    StopCoroutine(_bzzzRoutine);
+                    _bzzzRoutine = null;
                 }
 
-                float normalizedLift = Mathf.InverseLerp(minLift, maxLift, _liftForce);
-                variometerAudio.pitch = Mathf.Lerp(minPitch, maxPitch, normalizedLift);
-                variometerAudio.volume = Mathf.Lerp(minVolume, maxVolume, Mathf.Abs(normalizedLift));
+                float normalizedLift = Mathf.InverseLerp(_minLift, _maxLift, _liftForce);
+                _variometerAudio.pitch = Mathf.Lerp(_minPitch, _maxPitch, normalizedLift);
+                _variometerAudio.volume = Mathf.Lerp(_minVolume, _maxVolume, Mathf.Abs(normalizedLift));
             }
 
-            yield return new WaitForSeconds(updateInterval); // Интервал между обновлениями
+            yield return new WaitForSeconds(_updateInterval); // Интервал между обновлениями
         }
     }
 
     private IEnumerator FadeOutAndStop()
     {
-        while (variometerAudio.volume > 0)
+        while (_variometerAudio.volume > 0)
         {
-            variometerAudio.volume -= Time.deltaTime / 0.5f;
+            _variometerAudio.volume -= Time.deltaTime / 0.5f;
             yield return null;
         }
-        variometerAudio.Stop();
-        isPlaying = false;
-        stopRoutine = null;
+        _variometerAudio.Stop();
+        _isPlaying = false;
+        _stopRoutine = null;
     }
 
     private IEnumerator PlayBzzzSound()
     {
         // Проигрываем bzzz, если подъём 0
-        while (shouldPlayBzzz)
+        while (_shouldPlayBzzz)
         {
-            variometerAudio.pitch = 0.5f;
-            variometerAudio.volume = 1f;
-            variometerAudio.PlayOneShot(bzzzSound);
+            _variometerAudio.pitch = 0.5f;
+            _variometerAudio.volume = 1f;
+            _variometerAudio.PlayOneShot(_bzzzSound);
             yield return new WaitForSeconds(2f); // Интервал 2-3 сек
         }
-        bzzzRoutine = null; // Заканчиваем проигрывание после выхода из термика
+        _bzzzRoutine = null; // Заканчиваем проигрывание после выхода из термика
     }
 }

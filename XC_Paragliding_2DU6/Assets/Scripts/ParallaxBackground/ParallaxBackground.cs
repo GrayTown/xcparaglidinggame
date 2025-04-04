@@ -11,11 +11,11 @@ public class ParallaxBackground : MonoBehaviour
 
     public Layer[] layers; // Массив слоев
 
-    private Vector3 previousCameraPosition;
+    private Vector3 _previousCameraPosition;
 
     private void Start()
     {
-        previousCameraPosition = Camera.main.transform.position;
+        _previousCameraPosition = Camera.main.transform.position;
     }
 
     private void Update()
@@ -25,7 +25,7 @@ public class ParallaxBackground : MonoBehaviour
 
     private void MoveLayers()
     {
-        Vector3 cameraDelta = Camera.main.transform.position - previousCameraPosition;
+        Vector3 cameraDelta = Camera.main.transform.position - _previousCameraPosition;
 
         foreach (var layer in layers)
         {
@@ -48,6 +48,6 @@ public class ParallaxBackground : MonoBehaviour
         }
 
         // Обновляем предыдущую позицию камеры для следующего кадра
-        previousCameraPosition = Camera.main.transform.position;
+        _previousCameraPosition = Camera.main.transform.position;
     }
 }

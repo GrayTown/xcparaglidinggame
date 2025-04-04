@@ -1,6 +1,5 @@
-using UnityEngine;
-using Unity;
 using System.Collections.Generic;
+using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
 [RequireComponent(typeof(PolygonCollider2D))]
@@ -38,20 +37,20 @@ public class VerticalLine : MonoBehaviour
     public float elapsedTime = 0f; // Счетчик времени жизни
 
     
-    private LineRenderer lineRenderer;
-    private PolygonCollider2D polyCollider;
-    private float time;
-    private float transitionValue;   
-    private bool toDestroy = false;
+    private LineRenderer _lineRenderer;
+    private PolygonCollider2D _polyCollider;
+    private float _time;
+    private float _transitionValue;   
+    private bool _toDestroy = false;
 
     private void Start()
     {
-        lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.positionCount = pointCount;
-        lineRenderer.useWorldSpace = true;
-        transitionValue = useSinWave ? 0f : 1f;
-        polyCollider = gameObject.GetComponent<PolygonCollider2D>();
-        polyCollider.isTrigger = true;
+        _lineRenderer = GetComponent<LineRenderer>();
+        _lineRenderer.positionCount = pointCount;
+        _lineRenderer.useWorldSpace = true;
+        _transitionValue = useSinWave ? 0f : 1f;
+        _polyCollider = gameObject.GetComponent<PolygonCollider2D>();
+        _polyCollider.isTrigger = true;
 
         // Гарантируем, что массив сил соответствует количеству зон
         if (zoneForcesX == null || zoneForcesX.Length != zoneCountX)
@@ -70,14 +69,14 @@ public class VerticalLine : MonoBehaviour
 
     private void Update()
     {
-        if (!toDestroy && this.isActiveAndEnabled)
+        if (!_toDestroy && this.isActiveAndEnabled)
         {
             if (parentObject != null && cloudBaseObject != null)
             {
-                time += Time.deltaTime * speed;
+                _time += Time.deltaTime * speed;
 
                 // Плавный переход между синусом и шумом
-                transitionValue = Mathf.Lerp(transitionValue, useSinWave ? 0f : 1f, transitionSpeed * Time.deltaTime);
+                _transitionValue = Mathf.Lerp(_transitionValue, useSinWave ? 0f : 1f, transitionSpeed * Time.deltaTime);
 
                 GenerateLine();
                 GenerateEdgeCollider();
@@ -86,7 +85,7 @@ public class VerticalLine : MonoBehaviour
             elapsedTime += Time.deltaTime;
             if (elapsedTime >= thermalLifetime)
             {
-                toDestroy = true; // Удаляем термик по истечении времени
+                _toDestroy = true; // Удаляем термик по истечении времени
                 ThermalPool.Instance.ReturnThermal(this,cloudObject); // Возвращаем в пул
             }
         }
@@ -94,16 +93,16 @@ public class VerticalLine : MonoBehaviour
 
     private void GenerateLine()
     {
-        if (!toDestroy && isActiveAndEnabled)
+        if (!_toDestroy && isActiveAndEnabled)
         {
             if (pointCount <= 0)
             {
                 Debug.LogWarning("pointCount меньше или равно 0! Установка в 2.");
                 pointCount = 2; // Минимальное допустимое значение
             }
-            if (lineRenderer.positionCount != pointCount)
+            if (_lineRenderer.positionCount != pointCount)
             {
-                lineRenderer.positionCount = pointCount;
+                _lineRenderer.positionCount = pointCount;
             }
 
             float angleRad = angle * Mathf.Deg2Rad;
@@ -115,31 +114,31 @@ public class VerticalLine : MonoBehaviour
                 float offsetX = Mathf.Sin(angleRad) * (baseY - parentObject.position.y);
 
                 // Вычисляем колебания с плавностью
-                float wave = transitionValue < 0.5f
-                    ? Mathf.Sin(time * frequency + i) * amplitude
-                    : Mathf.PerlinNoise(time * frequency + i, 0f) * amplitude * 2f - amplitude;
+                float wave = _transitionValue < 0.5f
+                    ? Mathf.Sin(_time * frequency + i) * amplitude
+                    : Mathf.PerlinNoise(_time * frequency + i, 0f) * amplitude * 2f - amplitude;
                 wave = Mathf.Lerp(wave, wave * 0.5f, smoothness);
                 float x = baseX + offsetX + wave;
                 // Проверяем, не превышает ли i допустимые границы
-                if (i >= lineRenderer.positionCount)
+                if (i >= _lineRenderer.positionCount)
                 {
-                    Debug.LogError($"Ошибка: i ({i}) выходит за пределы positionCount ({lineRenderer.positionCount})");
+                    Debug.LogError($"Ошибка: i ({i}) выходит за пределы positionCount ({_lineRenderer.positionCount})");
                     return;
                 }
-                lineRenderer.SetPosition(i, new Vector3(x, baseY, parentObject.position.z));
+                _lineRenderer.SetPosition(i, new Vector3(x, baseY, parentObject.position.z));
             }
         }
     }
 
     private void GenerateEdgeCollider()
     {
-        if (!toDestroy && isActiveAndEnabled)
+        if (!_toDestroy && isActiveAndEnabled)
         {
             List<Vector2> colliderPoints = new List<Vector2>();
 
-            for (int i = 0; i < lineRenderer.positionCount; i++)
+            for (int i = 0; i < _lineRenderer.positionCount; i++)
             {
-                Vector3 worldPoint = lineRenderer.GetPosition(i);
+                Vector3 worldPoint = _lineRenderer.GetPosition(i);
                 Vector2 localPoint = transform.InverseTransformPoint(worldPoint); // Преобразуем в локальные координаты
 
                 if (i == 0)
@@ -148,38 +147,38 @@ public class VerticalLine : MonoBehaviour
                     colliderPoints.Add(colliderPoint);
                 }
 
-                if (i < lineRenderer.positionCount)
+                if (i < _lineRenderer.positionCount)
                 {
                     Vector2 colliderPoint = new Vector2(localPoint.x - colliderThinkness, localPoint.y);
                     colliderPoints.Add(colliderPoint);
                 }
 
-                if (i == lineRenderer.positionCount - 1)
+                if (i == _lineRenderer.positionCount - 1)
                 {
                     Vector2 colliderPoint = new Vector2(localPoint.x + colliderThinkness, localPoint.y);
                     colliderPoints.Add(colliderPoint);
 
                     for (int j = i; j >= 0; j--)
                     {
-                        Vector3 reverseWorldPoint = lineRenderer.GetPosition(j);
+                        Vector3 reverseWorldPoint = _lineRenderer.GetPosition(j);
                         Vector2 reverseLocalPoint = transform.InverseTransformPoint(reverseWorldPoint);
                         Vector2 point = new Vector2(reverseLocalPoint.x + colliderThinkness, reverseLocalPoint.y);
                         colliderPoints.Add(point);
                     }
                 }
             }
-            polyCollider.SetPath(0, colliderPoints);
+            _polyCollider.SetPath(0, colliderPoints);
         }
     }
 
     private float CalculateLiftForce(Vector2 otherPosition)
     {
-        if (!toDestroy && isActiveAndEnabled)
+        if (!_toDestroy && isActiveAndEnabled)
         {
-            if (polyCollider == null || polyCollider.pathCount == 0) return 0f;
+            if (_polyCollider == null || _polyCollider.pathCount == 0) return 0f;
 
             // Получаем границы термика
-            Vector2[] outerPath = polyCollider.GetPath(0);
+            Vector2[] outerPath = _polyCollider.GetPath(0);
             float minX = float.MaxValue, maxX = float.MinValue;
             float minY = float.MaxValue, maxY = float.MinValue;
 
@@ -250,17 +249,17 @@ public class VerticalLine : MonoBehaviour
     public void ResetThermal()
     {
         elapsedTime = 0f;
-        toDestroy = false;
+        _toDestroy = false;
         currentLiftForce = 0f;
     }
 
     private void OnDrawGizmos()
     {
-        if (polyCollider != null && polyCollider.pathCount > 0)
+        if (_polyCollider != null && _polyCollider.pathCount > 0)
         {
             Gizmos.color = Color.red;
 
-            Vector2[] points = polyCollider.GetPath(0);
+            Vector2[] points = _polyCollider.GetPath(0);
             for (int i = 0; i < points.Length; i++)
             {
                 Vector2 worldPoint1 = transform.TransformPoint(points[i]);
